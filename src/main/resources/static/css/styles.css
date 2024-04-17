@@ -1,0 +1,95 @@
+body {
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+header {
+    position: relative;
+    text-align: center;
+}
+
+.logo-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 5rem;
+    margin-left: 3rem;
+    margin-top: 2rem;
+}
+
+.logo2 {
+    height: 5rem;
+    margin-top: 4rem;
+}
+
+.titulo {
+    display: block;
+    margin: 1rem auto;
+    height: 4rem;
+    font-size: 2rem;
+}
+
+.card {
+    background: white;
+    width: min(50rem, 100%);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.24), -6px -6px 12px rgba(255, 255, 255, 0.72);
+    margin: 0.5rem auto 4rem;
+}
+
+.alert-danger {
+    width: min(50rem, 100%);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.24), -6px -6px 12px rgba(255, 255, 255, 0.72);
+    margin: 0.5rem auto 4rem;
+}
+
+.alert-success {
+    width: min(50rem, 100%);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.24), -6px -6px 12px rgba(255, 255, 255, 0.72);
+    margin: 0.5rem auto 4rem;
+}
+
+.btn-primary {
+    background-color: var(--bs-yellow);
+    color: black;
+    padding: 0.8rem 2.5rem;
+    margin-top: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e0e000;
+    color: black;
+}
+
+.btn-outline-secondary {
+    background-color: var(--bs-yellow);
+    color: black;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #e0e000;
+    color: black;
+}
+
