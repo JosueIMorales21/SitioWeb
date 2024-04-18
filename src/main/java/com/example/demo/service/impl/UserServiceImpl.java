@@ -40,13 +40,31 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDto findByNOMBRE(String NOMBRE) {
+        return null;
+    }
+
+    @Override
     public List<UserDto> findAllUsers() {
         List<User> users = userRepository.findAll();
         return users.stream().map((user) -> convertEntityToDto(user))
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public String findNOMBREByNEMPLEADO(String NEMPLEADO) {
+        User user = userRepository.findByNEMPLEADO(Integer.parseInt(NEMPLEADO));
+        if (user != null) {
+            return user.getNOMBRE();
+        }
+        return null;
+    }
+
+
     private UserDto convertEntityToDto(User user) {
+        if (user == null) {
+            return null;
+        }
         UserDto userDto = new UserDto();
         userDto.setNEMPLEADO(user.getNEMPLEADO());
         userDto.setNOMBRE(user.getNOMBRE());
@@ -54,6 +72,16 @@ public class UserServiceImpl implements UserService {
         userDto.setPASS(user.getPASS());
         return userDto;
     }
+
+
+//    private UserDto convertEntityToDto(User user) {
+//        UserDto userDto = new UserDto();
+//        userDto.setNEMPLEADO(user.getNEMPLEADO());
+//        userDto.setNOMBRE(user.getNOMBRE());
+//        userDto.setPERFIL(user.getPERFIL());
+//        userDto.setPASS(user.getPASS());
+//        return userDto;
+//    }
 
 
 }

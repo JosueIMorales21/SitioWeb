@@ -10,5 +10,9 @@ public interface UserService {
 
     User findByNempleado(String nempleado);
 
+    UserDto findByNOMBRE(String NOMBRE);
+
     List<UserDto> findAllUsers();
+
+    String findNOMBREByNEMPLEADO(String NEMPLEADO);
 }
