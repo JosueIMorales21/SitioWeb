@@ -52,6 +52,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void deleteUser(Integer id) {
+        userRepository.deleteById(Long.valueOf(id));
+    }
+
+    @Override
     public String findNOMBREByNEMPLEADO(String NEMPLEADO) {
         User user = userRepository.findByNEMPLEADO(Integer.parseInt(NEMPLEADO));
         if (user != null) {
@@ -72,16 +77,5 @@ public class UserServiceImpl implements UserService {
         userDto.setPASS(user.getPASS());
         return userDto;
     }
-
-
-//    private UserDto convertEntityToDto(User user) {
-//        UserDto userDto = new UserDto();
-//        userDto.setNEMPLEADO(user.getNEMPLEADO());
-//        userDto.setNOMBRE(user.getNOMBRE());
-//        userDto.setPERFIL(user.getPERFIL());
-//        userDto.setPASS(user.getPASS());
-//        return userDto;
-//    }
-
 
 }

@@ -13,6 +13,7 @@ public interface UserService {
     UserDto findByNOMBRE(String NOMBRE);
 
     List<UserDto> findAllUsers();
+    void deleteUser(Integer id);
 
     String findNOMBREByNEMPLEADO(String NEMPLEADO);
 }

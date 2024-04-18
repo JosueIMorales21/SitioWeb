@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.UserDto;
 import com.example.demo.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +17,7 @@ public class AuthController {
     }
 
     @GetMapping("index")
-    public String home(){
+    public String home() {
         return "redirect:login";
     }
 
@@ -29,26 +28,22 @@ public class AuthController {
 
 
     @GetMapping("/user")
-    public String userTemplate(){
+    public String userTemplate() {
         return "user";
     }
 
     @GetMapping("/admin")
-    public String adminTemplate(Model model, Principal principal){
+    public String adminTemplate(Model model, Principal principal) {
         String username = principal.getName();
         System.out.println("Fetching user for NEMPLEADO: " + username);  // Logging
         String nombre = userService.findNOMBREByNEMPLEADO(username);
 
         if (nombre != null) {
-            System.out.println("Found NOMBRE: " + nombre);  // Logging
             model.addAttribute("name", nombre);
         } else {
-            System.out.println("NOMBRE not found");  // Logging
             model.addAttribute("name", "User");
         }
         return "admin";
     }
-
-
 
 }
