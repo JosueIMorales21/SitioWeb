@@ -41,11 +41,11 @@ header {
 
 .card {
     background: white;
-    width: min(50rem, 100%);
-    padding: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.24), -6px -6px 12px rgba(255, 255, 255, 0.72);
-    margin: 0.5rem auto 4rem;
+    width: min(30rem, 100%); /* Reduced the maximum width */
+    padding: 1.5rem; /* Reduced the padding */
+    border-radius: 0.3rem; /* Reduced the border-radius */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.24), -4px -4px 8px rgba(255, 255, 255, 0.72);
+    margin: 0.5rem auto 3rem; /* Adjusted the margin */
 }
 
 .alert-danger {
