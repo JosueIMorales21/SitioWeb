@@ -34,3 +34,13 @@ function validateForm() {
 
     return true;
 }
+
+function validateUser(inputField) {
+    // Remove any non-numeric characters
+    inputField.value = inputField.value.replace(/[^0-9]/g, '');
+
+    // Limit the length of the input to 10 characters
+    if (inputField.value.length > 10) {
+        inputField.value = inputField.value.slice(0, 10);
+    }
+}
