@@ -44,3 +44,10 @@ function validateUser(inputField) {
         inputField.value = inputField.value.slice(0, 10);
     }
 }
+
+function validatePassword(inputField) {
+    // Limit the length of the input to 8 characters
+    if (inputField.value.length > 8) {
+        inputField.value = inputField.value.slice(0, 8);
+    }
+}
