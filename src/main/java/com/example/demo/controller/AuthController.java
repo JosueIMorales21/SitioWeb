@@ -1,9 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.UserDto;
 import com.example.demo.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
 
@@ -35,7 +38,6 @@ public class AuthController {
     @GetMapping("/admin")
     public String adminTemplate(Model model, Principal principal) {
         String username = principal.getName();
-        System.out.println("Fetching user for NEMPLEADO: " + username);  // Logging
         String nombre = userService.findNOMBREByNEMPLEADO(username);
 
         if (nombre != null) {
@@ -44,6 +46,18 @@ public class AuthController {
             model.addAttribute("name", "User");
         }
         return "admin";
+    }
+
+
+    @ModelAttribute("user")
+    public UserDto userDto() {
+        return new UserDto();
+    }
+
+    @PostMapping("/admin")
+    public String registerUser(@ModelAttribute("user")UserDto userDto) {
+        userService.save(userDto);
+        return "redirect:/admin?success";
     }
 
 }

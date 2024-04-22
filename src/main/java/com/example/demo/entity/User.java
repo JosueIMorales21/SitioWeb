@@ -15,7 +15,6 @@ import lombok.Setter;
 public class User
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String NUSUARIO;
     @Column(nullable = false, unique = true)
     private Integer NEMPLEADO;
@@ -24,7 +23,9 @@ public class User
     @Column(nullable=false)
     private String PASS;
     @Column(nullable = false)
+    private Integer PERFIL;
+    @Column(nullable = false)
     private Integer TIENDA;
     @Column(nullable = false)
-    private Integer PERFIL;
+    private Integer STATUS;
 }

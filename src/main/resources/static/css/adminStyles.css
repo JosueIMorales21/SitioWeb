@@ -62,3 +62,43 @@
 .menu.active {
     display: block;
 }
+
+.userRegisterGroup {
+    margin-bottom: 15px;
+}
+
+.userRegisterGroup label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.userRegisterGroup input[type="text"] {
+    width: 40%; /* Adjust the width as per your requirement */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.userRegisterGroup input[type="text"]:focus {
+    border-color: #007bff;
+    outline: 0;
+    box-shadow: 0 0 5px rgba(0,123,255,0.5);
+}
+
+.error {
+    border: 1px solid red;
+}
+
+.success {
+    border: 1px solid green;
+}
+
+.text-danger {
+    color: red;
+}
+
+.alert-info {
+    text-align: center;
+}

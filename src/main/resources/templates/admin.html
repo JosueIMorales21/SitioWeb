@@ -10,6 +10,9 @@
     <link rel="stylesheet" th:href="@{/css/adminStyles.css}">
 </head>
 <body>
+
+<script th:src="@{/js/adminScripts.js}"></script>
+
 <header>
     <div style="text-align: right;">
         <form action="#" th:action="@{/logout}" method="post">
@@ -25,7 +28,7 @@
 <br>
 <div class="mainContainer">
     <div class="sidebar">
-        <button class="sidebar-btn" onclick="openMenu('option1')">EDITAR USUARIO</button>
+        <button class="sidebar-btn" onclick="openMenu('option1')">AGREGAR USUARIO</button>
         <button class="sidebar-btn" onclick="openMenu('option2')">Opción 2</button>
         <button class="sidebar-btn" onclick="openMenu('option3')">Opción 3</button>
     </div>
@@ -33,9 +36,108 @@
     <!-- Content Area -->
     <div class="content">
         <div id="option1" class="menu">
-            <!-- Content for Option 1 -->
-            <h2>Option 1 Content</h2>
-            <p>Add info for Option 1 here.</p>
+            <h1>Registro de usuario</h1>
+            <br>
+            <form id="formAdmin" th:action="@{/admin}" method="post" th:object="${user}">
+                <div class="userRegisterGroup">
+                    <label for="NUSUARIO" class="control-label">Número de Usuario:</label>
+                    <input type="text"
+                           id="NUSUARIO"
+                           name="NUSUARIO"
+                           class="form-control"
+                           placeholder="Introduce tu número de usuario"
+                           oninput="validateNEMPLEADO(this)"
+                           th:field="*{NUSUARIO}"
+                    />
+                    <small id="NUSUARIO_error" class="text-danger d-none">Por favor, introduce tu número de usuario</small>
+                </div>
+
+                <div class="userRegisterGroup">
+                    <label for="NEMPLEADO" class="control-label">Número de Empleado:</label>
+                    <input type="text"
+                           id="NEMPLEADO"
+                           name="NEMPLEADO"
+                           class="form-control"
+                           placeholder="Introduce tu número de empleado"
+                           oninput="validateNEMPLEADO(this)"
+                           th:field="*{NEMPLEADO}"
+                    />
+                    <small id="NEMPLEADO_error" class="text-danger d-none">Por favor, introduce tu número de empleado</small>
+                </div>
+
+                <div class="userRegisterGroup">
+                    <label for="NOMBRE" class="control-label">Nombre:</label>
+                    <input type="text"
+                           id="NOMBRE"
+                           name="NOMBRE"
+                           class="form-control"
+                           placeholder="Introduce tu nombre"
+                           oninput="validateNOMBRE(this)"
+                           th:field="*{NOMBRE}"
+                    />
+                    <small id="NOMBRE_error" class="text-danger d-none">Por favor, introduce tu nombre</small>
+                </div>
+
+                <div class="userRegisterGroup">
+                    <label for="PASS" class="control-label">Contraseña:</label>
+                    <input type="password"
+                           id="PASS"
+                           name="PASS"
+                           class="form-control"
+                           placeholder="Introduce una contraseña"
+                           oninput="validatePASS(this)"
+                           th:field="*{PASS}"
+                    />
+                    <small id="PASS_error" class="text-danger d-none">Por favor, introduce una contraseña válida (Al menos una mayúscula, una minúscula, un número y un símbolo)</small>
+                </div>
+
+                <div class="userRegisterGroup">
+                    <label for="PERFIL" class="control-label">Perfil:</label>
+                    <input type="text"
+                           id="PERFIL"
+                           name="PERFIL"
+                           class="form-control"
+                           placeholder="Introduce tu perfil"
+                           oninput="validatePERFIL(this)"
+                           th:field="*{PERFIL}"
+                    />
+                    <small id="PERFIL_error" class="text-danger d-none">Por favor, introduce tu perfil</small>
+                </div>
+
+                <div class="userRegisterGroup">
+                    <label for="TIENDA" class="control-label">Tienda:</label>
+                    <input type="text"
+                           id="TIENDA"
+                           name="TIENDA"
+                           class="form-control"
+                           placeholder="Introduce tu tienda"
+                           oninput="validateTIENDA(this)"
+                           th:field="*{TIENDA}"
+                    />
+                    <small id="TIENDA_error" class="text-danger d-none">Por favor, introduce tu tienda</small>
+                </div>
+
+                <div class="userRegisterGroup">
+                    <label for="STATUS" class="control-label">Status:</label>
+                    <input type="text"
+                           id="STATUS"
+                           name="STATUS"
+                           class="form-control"
+                           placeholder="Introduce tu status"
+                           oninput="validateSTATUS(this)"
+                           th:field="*{STATUS}"
+                    />
+                    <small id="STATUS_error" class="text-danger d-none">Por favor, introduce tu status</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Registrar</button>
+
+                <div th:if="${param.success}">
+                    <div class="alert alert-info text-center">
+                        Usuario registrado correctamente.
+                    </div>
+                </div>
+            </form>
         </div>
 
         <div id="option2" class="menu">

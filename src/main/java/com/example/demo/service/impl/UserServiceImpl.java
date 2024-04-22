@@ -19,19 +19,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUser(UserDto userDto) {
-        User user = new User();
-        user.setNOMBRE(userDto.getNOMBRE());
-        user.setNEMPLEADO(userDto.getNEMPLEADO());
-        user.setPASS(userDto.getPASS());
-
-        int perfil = 10;
-        if(userDto.getPERFIL() != null) {
-            perfil = userDto.getPERFIL();
-        }
-
-        user.setPERFIL(perfil);
-        userRepository.save(user);
+    public User save(UserDto userDto) {
+        User user = new User(
+                userDto.getNUSUARIO(),
+                userDto.getNEMPLEADO(),
+                userDto.getNOMBRE(),
+                userDto.getPASS(),
+                userDto.getPERFIL(),
+                userDto.getTIENDA(),
+                userDto.getSTATUS()
+        );
+        return userRepository.save(user);
     }
 
     @Override

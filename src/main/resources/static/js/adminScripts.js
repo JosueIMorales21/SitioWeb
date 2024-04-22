@@ -14,3 +14,166 @@ function openMenu(menuId) {
         menu.style.display = "none";
     }
 }
+///////////////////////////////////////////////////////
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('formAdmin');
+    const NUSUARIO = document.getElementById('NUSUARIO');
+    const NEMPLEADO = document.getElementById('NEMPLEADO');
+    const NOMBRE = document.getElementById('NOMBRE');
+    const PASS = document.getElementById('PASS');
+    const PERFIL = document.getElementById('PERFIL');
+    const TIENDA = document.getElementById('TIENDA');
+    const STATUS = document.getElementById('STATUS');
+
+    form.addEventListener('submit', e => {
+        console.log('Form submitted'); // Debugging line
+        if (!validateInputs()) {
+            e.preventDefault(); // Prevent the form from being submitted
+        }
+    });
+
+    const setError = (element, message) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.text-danger');
+
+        errorDisplay.innerText = message;
+        inputControl.classList.add('error');
+        inputControl.classList.remove('success');
+    }
+
+    const setSuccess = element => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.text-danger');
+
+        errorDisplay.innerText = '';
+        inputControl.classList.add('success');
+        inputControl.classList.remove('error');
+    };
+
+    const isValidPASS = password => {
+        const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+.])[A-Za-z\d!@#$%^&*()_+.]{8,}$/;
+        return re.test(String(password));
+    }
+
+    const validateInputs = () => {
+        let isValid = true;
+
+        const nusuarioValue = NUSUARIO.value.trim();
+        const nempleadoValue = NEMPLEADO.value.trim();
+        const nombreValue = NOMBRE.value.trim();
+        const passValue = PASS.value.trim();
+        const perfilValue = PERFIL.value.trim();
+        const tiendaValue = TIENDA.value.trim();
+        const statusValue = STATUS.value.trim();
+
+        console.log(`NUSUARIO: ${nusuarioValue}`);
+        console.log(`NEMPLEADO: ${nempleadoValue}`);
+        console.log(`NOMBRE: ${nombreValue}`);
+        console.log(`PASS: ${passValue}`);
+        console.log(`PERFIL: ${perfilValue}`);
+        console.log(`TIENDA: ${tiendaValue}`);
+        console.log(`STATUS: ${statusValue}`);
+
+        if (!nusuarioValue) {
+            setError(NUSUARIO, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(NUSUARIO);
+        }
+
+        if (!nempleadoValue) {
+            setError(NEMPLEADO, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(NEMPLEADO);
+        }
+
+        if (!nombreValue) {
+            setError(NOMBRE, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(NOMBRE);
+        }
+
+        if (!passValue) {
+            setError(PASS, 'Campo requerido');
+            isValid = false;
+        } else if (!isValidPASS(passValue)) {
+            setError(PASS, 'Ingresa una contraseña válida');
+            isValid = false;
+        } else {
+            setSuccess(PASS);
+        }
+
+        if (!perfilValue) {
+            setError(PERFIL, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(PERFIL);
+        }
+
+        if (!tiendaValue) {
+            setError(TIENDA, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(TIENDA);
+        }
+
+        if (!statusValue) {
+            setError(STATUS, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(STATUS);
+        }
+
+        console.log(`isValid: ${isValid}`); // Debugging line
+
+        return isValid;
+    };
+})
+
+
+///////////////////////////////////////////////////////////////////
+
+function validateNEMPLEADO(inputField) {
+    // Remove any non-numeric characters
+    inputField.value = inputField.value.replace(/[^0-9]/g, '');
+
+    // Limit the length of the input to 10 characters
+    if (inputField.value.length > 10) {
+        inputField.value = inputField.value.slice(0, 10);
+    }
+}
+
+function validateNOMBRE(inputField) {
+    // Remove any non-numeric characters
+    inputField.value = inputField.value.replace(/[^a-zA-ZÁáÉéÍíÓóÚú\s]/g, '');
+
+    // Limit the length of the input to 10 characters
+    if (inputField.value.length > 50) {
+        inputField.value = inputField.value.slice(0, 50);
+    }
+}
+
+function validatePASS(inputField) {
+    // Remove any characters other than letters (including accents), numbers, and symbols
+    inputField.value = inputField.value.replace(/[^a-zA-ZÁáÉéÍíÓóÚú\s\d!?$.]/g, '');
+
+    // Limit the length of the input to 8 characters
+    if (inputField.value.length > 8) {
+        inputField.value = inputField.value.slice(0, 8);
+    }
+
+    // Validate the password format
+    const passwordRegex = /^(?=.*[a-záéíóú])(?=.*[A-ZÁÉÍÓÚ])(?=.*\d)(?=.*[!?$])[A-Za-zÁáÉéÍíÓóÚú\d!?$]{8,}$/;
+
+    if (!passwordRegex.test(inputField.value)) {
+        // Show error message if the password does not meet the criteria
+        document.getElementById("PASS_error").classList.remove("d-none");
+    } else {
+        document.getElementById("PASS_error").classList.add("d-none");
+    }
+}
+
+
+
