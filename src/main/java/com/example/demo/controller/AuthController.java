@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -55,9 +56,14 @@ public class AuthController {
     }
 
     @PostMapping("/admin")
-    public String registerUser(@ModelAttribute("user")UserDto userDto) {
-        userService.save(userDto);
-        return "redirect:/admin?success";
+    public String registerUser(@ModelAttribute("user") UserDto userDto, RedirectAttributes redirectAttributes) {
+        try {
+            userService.save(userDto);
+            return "redirect:/admin?success";
+        } catch (RuntimeException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            return "redirect:/admin?error";
+        }
     }
 
 }

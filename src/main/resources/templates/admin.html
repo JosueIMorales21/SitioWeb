@@ -25,7 +25,16 @@
         </form>
     </div>
 </header>
-<br>
+<div th:if="${param.success}">
+    <div class="alert alert-info text-center">
+        Usuario registrado correctamente.
+    </div>
+</div>
+<div th:if="${param.error}">
+    <div class="alert alert-danger text-center">
+        Número de empleado existente.
+    </div>
+</div>
 <div class="mainContainer">
     <div class="sidebar">
         <button class="sidebar-btn" onclick="openMenu('option1')">AGREGAR USUARIO</button>
@@ -106,11 +115,6 @@
                     <br>
                     <div style="align-items: center">
                         <button type="submit" class="btn btn-primary">Registrar</button>
-                    </div>
-                    <div th:if="${param.success}">
-                        <div class="alert alert-info text-center">
-                            Usuario registrado correctamente.
-                        </div>
                     </div>
                 </form>
         </div>

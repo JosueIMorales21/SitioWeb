@@ -112,10 +112,10 @@ function validateNEMPLEADO(inputField) {
 }
 
 function validateNOMBRE(inputField) {
-    // Remove any non-numeric characters
-    inputField.value = inputField.value.replace(/[^a-zA-ZÁáÉéÍíÓóÚú\s]/g, '');
+    // Remove any non-alphabetic characters including "ñ" and spaces
+    inputField.value = inputField.value.replace(/[^a-zA-ZÁáÉéÍíÓóÚúÑñ\s]/g, '');
 
-    // Limit the length of the input to 10 characters
+    // Limit the length of the input to 50 characters
     if (inputField.value.length > 50) {
         inputField.value = inputField.value.slice(0, 50);
     }
@@ -154,6 +154,4 @@ function validateTIENDA(inputField) {
         inputField.value = inputField.value.slice(0, 4);
     }
 }
-
-
 

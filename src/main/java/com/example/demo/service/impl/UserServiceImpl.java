@@ -20,7 +20,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(UserDto userDto) {
-        String nextUserId = generateNextUserId(userDto);
+        String nextUserId = generateNextUserId();
+
+        if (!isUsernameUnique(userDto.getNEMPLEADO())) {
+            throw new RuntimeException("El número de empleado ya existe.");
+        }
+
         User user = new User(
                 nextUserId,
                 userDto.getNEMPLEADO(),
@@ -33,13 +38,20 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    private String generateNextUserId(UserDto userDto) {
-        // Format NEMPLEADO to generate NUSUARIO
-        return formatNEMPLEADO(userDto.getNEMPLEADO());
+    public boolean isUsernameUnique(Integer nempleado) {
+        return userRepository.findByNEMPLEADO(nempleado) == null;
     }
 
-    private String formatNEMPLEADO(Integer NEMPLEADO) {
-        return String.format("%010d", NEMPLEADO);
+    private String generateNextUserId() {
+        String maxUserId = userRepository.findMaxNUSUARIO();
+
+        if (maxUserId == null) {
+            return "0000000001";
+        }
+
+        int nextId = Integer.parseInt(maxUserId) + 1;
+
+        return String.format("%010d", nextId);
     }
 
     @Override
