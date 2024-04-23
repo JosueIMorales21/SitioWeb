@@ -64,41 +64,33 @@
 }
 
 .userRegisterGroup {
-    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
-.userRegisterGroup label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.userRegisterGroup input[type="text"] {
-    width: 40%; /* Adjust the width as per your requirement */
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
+.userRegisterGroup input {
+    border: 2px solid #f0f0f0;
     border-radius: 4px;
+    display: block;
+    font-size: 12px;
+    padding: 10px;
+    width: 100%;
 }
 
-.userRegisterGroup input[type="text"]:focus {
-    border-color: #007bff;
+.userRegisterGroup input:focus {
     outline: 0;
-    box-shadow: 0 0 5px rgba(0,123,255,0.5);
 }
 
-.error {
-    border: 1px solid red;
+.userRegisterGroup.alert-success input {
+    border-color: #09c372;
 }
 
-.success {
-    border: 1px solid green;
+.userRegisterGroup.error input {
+    border-color: #ff3860;
 }
 
-.text-danger {
-    color: red;
-}
-
-.alert-info {
-    text-align: center;
+.userRegisterGroup .error {
+    color: #ff3860;
+    font-size: 9px;
+    height: 13px;
 }

@@ -49,7 +49,7 @@
                            oninput="validateNEMPLEADO(this)"
                            th:field="*{NUSUARIO}"
                     />
-                    <small id="NUSUARIO_error" class="text-danger d-none">Por favor, introduce tu número de usuario</small>
+                    <div class="error"></div>
                 </div>
 
                 <div class="userRegisterGroup">
@@ -62,7 +62,7 @@
                            oninput="validateNEMPLEADO(this)"
                            th:field="*{NEMPLEADO}"
                     />
-                    <small id="NEMPLEADO_error" class="text-danger d-none">Por favor, introduce tu número de empleado</small>
+                    <div class="error"></div>
                 </div>
 
                 <div class="userRegisterGroup">
@@ -75,12 +75,12 @@
                            oninput="validateNOMBRE(this)"
                            th:field="*{NOMBRE}"
                     />
-                    <small id="NOMBRE_error" class="text-danger d-none">Por favor, introduce tu nombre</small>
+                    <div class="error"></div>
                 </div>
 
                 <div class="userRegisterGroup">
                     <label for="PASS" class="control-label">Contraseña:</label>
-                    <input type="password"
+                    <input type="text"
                            id="PASS"
                            name="PASS"
                            class="form-control"
@@ -88,7 +88,7 @@
                            oninput="validatePASS(this)"
                            th:field="*{PASS}"
                     />
-                    <small id="PASS_error" class="text-danger d-none">Por favor, introduce una contraseña válida (Al menos una mayúscula, una minúscula, un número y un símbolo)</small>
+                    <div class="error"></div>
                 </div>
 
                 <div class="userRegisterGroup">
@@ -101,7 +101,7 @@
                            oninput="validatePERFIL(this)"
                            th:field="*{PERFIL}"
                     />
-                    <small id="PERFIL_error" class="text-danger d-none">Por favor, introduce tu perfil</small>
+                    <div class="error"></div>
                 </div>
 
                 <div class="userRegisterGroup">
@@ -114,7 +114,7 @@
                            oninput="validateTIENDA(this)"
                            th:field="*{TIENDA}"
                     />
-                    <small id="TIENDA_error" class="text-danger d-none">Por favor, introduce tu tienda</small>
+                    <div class="error"></div>
                 </div>
 
                 <div class="userRegisterGroup">
@@ -124,10 +124,10 @@
                            name="STATUS"
                            class="form-control"
                            placeholder="Introduce tu status"
-                           oninput="validateSTATUS(this)"
+                           oninput="validatePERFIL(this)"
                            th:field="*{STATUS}"
                     />
-                    <small id="STATUS_error" class="text-danger d-none">Por favor, introduce tu status</small>
+                    <div class="error"></div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Registrar</button>

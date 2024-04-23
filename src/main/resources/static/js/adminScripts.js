@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const setError = (element, message) => {
         const inputControl = element.parentElement;
-        const errorDisplay = inputControl.querySelector('.text-danger');
+        const errorDisplay = inputControl.querySelector('.error');
 
         errorDisplay.innerText = message;
         inputControl.classList.add('error');
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const setSuccess = element => {
         const inputControl = element.parentElement;
-        const errorDisplay = inputControl.querySelector('.text-danger');
+        const errorDisplay = inputControl.querySelector('.error');
 
         errorDisplay.innerText = '';
         inputControl.classList.add('success');
@@ -107,6 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!perfilValue) {
             setError(PERFIL, 'Campo requerido');
+            isValid = false;
+        } else if(perfilValue !== '10' || perfilValue !=='15') {
+            setError(PERFIL, 'Rol desconocido.')
             isValid = false;
         } else {
             setSuccess(PERFIL);
@@ -172,6 +175,20 @@ function validatePASS(inputField) {
         document.getElementById("PASS_error").classList.remove("d-none");
     } else {
         document.getElementById("PASS_error").classList.add("d-none");
+    }
+}
+
+function validatePERFIL(inputField) {
+    inputField.value = inputField.value.replace(/[^0-9]/g, '');
+    if (inputField.value.length > 2) {
+        inputField.value = inputField.value.slice(0, 2);
+    }
+}
+
+function validateTIENDA(inputField) {
+    inputField.value = inputField.value.replace(/[^0-9]/g, '');
+    if (inputField.value.length > 4) {
+        inputField.value = inputField.value.slice(0, 4);
     }
 }
 
