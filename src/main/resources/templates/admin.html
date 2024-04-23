@@ -13,7 +13,10 @@
 
 <script th:src="@{/js/adminScripts.js}"></script>
 
-<header>
+<header style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="text-align: center; flex: 1;">
+        <h1 class="welcomeMessage">¡Bienvenido <span th:text="${name}"></span>!</h1>
+    </div>
     <div style="text-align: right;">
         <form action="#" th:action="@{/logout}" method="post">
             <div class="mb-3">
@@ -22,9 +25,6 @@
         </form>
     </div>
 </header>
-<div class="" style="text-align: center">
-    <h1 class="welcomeMessage">¡Bienvenido <span th:text="${name}"></span>!</h1>
-</div>
 <br>
 <div class="mainContainer">
     <div class="sidebar">
@@ -38,106 +38,81 @@
         <div id="option1" class="menu">
             <h1>Registro de usuario</h1>
             <br>
-            <form id="formAdmin" th:action="@{/admin}" method="post" th:object="${user}">
-                <div class="userRegisterGroup">
-                    <label for="NUSUARIO" class="control-label">Número de Usuario:</label>
-                    <input type="text"
-                           id="NUSUARIO"
-                           name="NUSUARIO"
-                           class="form-control"
-                           placeholder="Introduce tu número de usuario"
-                           oninput="validateNEMPLEADO(this)"
-                           th:field="*{NUSUARIO}"
-                    />
-                    <div class="error"></div>
-                </div>
-
-                <div class="userRegisterGroup">
-                    <label for="NEMPLEADO" class="control-label">Número de Empleado:</label>
-                    <input type="text"
-                           id="NEMPLEADO"
-                           name="NEMPLEADO"
-                           class="form-control"
-                           placeholder="Introduce tu número de empleado"
-                           oninput="validateNEMPLEADO(this)"
-                           th:field="*{NEMPLEADO}"
-                    />
-                    <div class="error"></div>
-                </div>
-
-                <div class="userRegisterGroup">
-                    <label for="NOMBRE" class="control-label">Nombre:</label>
-                    <input type="text"
-                           id="NOMBRE"
-                           name="NOMBRE"
-                           class="form-control"
-                           placeholder="Introduce tu nombre"
-                           oninput="validateNOMBRE(this)"
-                           th:field="*{NOMBRE}"
-                    />
-                    <div class="error"></div>
-                </div>
-
-                <div class="userRegisterGroup">
-                    <label for="PASS" class="control-label">Contraseña:</label>
-                    <input type="text"
-                           id="PASS"
-                           name="PASS"
-                           class="form-control"
-                           placeholder="Introduce una contraseña"
-                           oninput="validatePASS(this)"
-                           th:field="*{PASS}"
-                    />
-                    <div class="error"></div>
-                </div>
-
-                <div class="userRegisterGroup">
-                    <label for="PERFIL" class="control-label">Perfil:</label>
-                    <input type="text"
-                           id="PERFIL"
-                           name="PERFIL"
-                           class="form-control"
-                           placeholder="Introduce tu perfil"
-                           oninput="validatePERFIL(this)"
-                           th:field="*{PERFIL}"
-                    />
-                    <div class="error"></div>
-                </div>
-
-                <div class="userRegisterGroup">
-                    <label for="TIENDA" class="control-label">Tienda:</label>
-                    <input type="text"
-                           id="TIENDA"
-                           name="TIENDA"
-                           class="form-control"
-                           placeholder="Introduce tu tienda"
-                           oninput="validateTIENDA(this)"
-                           th:field="*{TIENDA}"
-                    />
-                    <div class="error"></div>
-                </div>
-
-                <div class="userRegisterGroup">
-                    <label for="STATUS" class="control-label">Status:</label>
-                    <input type="text"
-                           id="STATUS"
-                           name="STATUS"
-                           class="form-control"
-                           placeholder="Introduce tu status"
-                           oninput="validatePERFIL(this)"
-                           th:field="*{STATUS}"
-                    />
-                    <div class="error"></div>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Registrar</button>
-
-                <div th:if="${param.success}">
-                    <div class="alert alert-info text-center">
-                        Usuario registrado correctamente.
+                <form style="align-items: center" id="formAdmin" th:action="@{/admin}" method="post" th:object="${user}">
+                    <div class="userRegisterGroup">
+                        <label for="NEMPLEADO" class="control-label">Número de Empleado:</label>
+                        <input type="text"
+                               id="NEMPLEADO"
+                               name="NEMPLEADO"
+                               class="form-control"
+                               placeholder="Introduce tu número de empleado"
+                               oninput="validateNEMPLEADO(this)"
+                               th:field="*{NEMPLEADO}"
+                        />
+                        <div class="error"></div>
                     </div>
-                </div>
-            </form>
+
+                    <div class="userRegisterGroup">
+                        <label for="NOMBRE" class="control-label">Nombre:</label>
+                        <input type="text"
+                               id="NOMBRE"
+                               name="NOMBRE"
+                               class="form-control"
+                               placeholder="Introduce tu nombre"
+                               oninput="validateNOMBRE(this)"
+                               th:field="*{NOMBRE}"
+                        />
+                        <div class="error"></div>
+                    </div>
+
+                    <div class="userRegisterGroup">
+                        <label for="PASS" class="control-label">Contraseña:</label>
+                        <input type="text"
+                               id="PASS"
+                               name="PASS"
+                               class="form-control"
+                               placeholder="Introduce una contraseña"
+                               oninput="validatePASS(this)"
+                               th:field="*{PASS}"
+                        />
+                        <div class="error"></div>
+                    </div>
+
+                    <div class="userRegisterGroup">
+                        <label for="PERFIL" class="control-label">Perfil:</label>
+                        <input type="text"
+                               id="PERFIL"
+                               name="PERFIL"
+                               class="form-control"
+                               placeholder="Introduce tu perfil"
+                               oninput="validatePERFIL(this)"
+                               th:field="*{PERFIL}"
+                        />
+                        <div class="error"></div>
+                    </div>
+
+                    <div class="userRegisterGroup">
+                        <label for="TIENDA" class="control-label">Tienda:</label>
+                        <input type="text"
+                               id="TIENDA"
+                               name="TIENDA"
+                               class="form-control"
+                               placeholder="Introduce tu tienda"
+                               oninput="validateTIENDA(this)"
+                               th:field="*{TIENDA}"
+                        />
+                        <div class="error"></div>
+                    </div>
+                    <br>
+                    <div style="align-items: center">
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                    </div>
+                    <div th:if="${param.success}">
+                        <div class="alert alert-info text-center">
+                            Usuario registrado correctamente.
+                        </div>
+                    </div>
+                </form>
         </div>
 
         <div id="option2" class="menu">

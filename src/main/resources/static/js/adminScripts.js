@@ -17,13 +17,10 @@ function openMenu(menuId) {
 ///////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('formAdmin');
-    const NUSUARIO = document.getElementById('NUSUARIO');
     const NEMPLEADO = document.getElementById('NEMPLEADO');
     const NOMBRE = document.getElementById('NOMBRE');
     const PASS = document.getElementById('PASS');
     const PERFIL = document.getElementById('PERFIL');
-    const TIENDA = document.getElementById('TIENDA');
-    const STATUS = document.getElementById('STATUS');
 
     form.addEventListener('submit', e => {
         console.log('Form submitted'); // Debugging line
@@ -58,28 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const validateInputs = () => {
         let isValid = true;
 
-        const nusuarioValue = NUSUARIO.value.trim();
         const nempleadoValue = NEMPLEADO.value.trim();
         const nombreValue = NOMBRE.value.trim();
         const passValue = PASS.value.trim();
         const perfilValue = PERFIL.value.trim();
-        const tiendaValue = TIENDA.value.trim();
-        const statusValue = STATUS.value.trim();
-
-        console.log(`NUSUARIO: ${nusuarioValue}`);
-        console.log(`NEMPLEADO: ${nempleadoValue}`);
-        console.log(`NOMBRE: ${nombreValue}`);
-        console.log(`PASS: ${passValue}`);
-        console.log(`PERFIL: ${perfilValue}`);
-        console.log(`TIENDA: ${tiendaValue}`);
-        console.log(`STATUS: ${statusValue}`);
-
-        if (!nusuarioValue) {
-            setError(NUSUARIO, 'Campo requerido');
-            isValid = false;
-        } else {
-            setSuccess(NUSUARIO);
-        }
 
         if (!nempleadoValue) {
             setError(NEMPLEADO, 'Campo requerido');
@@ -108,28 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!perfilValue) {
             setError(PERFIL, 'Campo requerido');
             isValid = false;
-        } else if(perfilValue !== '10' || perfilValue !=='15') {
-            setError(PERFIL, 'Rol desconocido.')
+        } else if (perfilValue !== '10' && perfilValue !== '15') {
+            setError(PERFIL, 'Rol desconocido.');
             isValid = false;
         } else {
             setSuccess(PERFIL);
         }
-
-        if (!tiendaValue) {
-            setError(TIENDA, 'Campo requerido');
-            isValid = false;
-        } else {
-            setSuccess(TIENDA);
-        }
-
-        if (!statusValue) {
-            setError(STATUS, 'Campo requerido');
-            isValid = false;
-        } else {
-            setSuccess(STATUS);
-        }
-
-        console.log(`isValid: ${isValid}`); // Debugging line
 
         return isValid;
     };

@@ -20,16 +20,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(UserDto userDto) {
+        String nextUserId = generateNextUserId(userDto);
         User user = new User(
-                userDto.getNUSUARIO(),
+                nextUserId,
                 userDto.getNEMPLEADO(),
                 userDto.getNOMBRE(),
                 userDto.getPASS(),
                 userDto.getPERFIL(),
                 userDto.getTIENDA(),
-                userDto.getSTATUS()
+                1
         );
         return userRepository.save(user);
+    }
+
+    private String generateNextUserId(UserDto userDto) {
+        // Format NEMPLEADO to generate NUSUARIO
+        return formatNEMPLEADO(userDto.getNEMPLEADO());
+    }
+
+    private String formatNEMPLEADO(Integer NEMPLEADO) {
+        return String.format("%010d", NEMPLEADO);
     }
 
     @Override
