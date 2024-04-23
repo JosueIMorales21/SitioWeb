@@ -89,15 +89,10 @@
 
                     <div class="userRegisterGroup">
                         <label for="PERFIL" class="control-label">Perfil:</label>
-                        <input type="text"
-                               id="PERFIL"
-                               name="PERFIL"
-                               class="form-control"
-                               placeholder="Introduce tu perfil"
-                               oninput="validatePERFIL(this)"
-                               th:field="*{PERFIL}"
-                        />
-                        <div class="error"></div>
+                        <select id="PERFIL" name="PERFIL" class="form-control" th:field="*{PERFIL}">
+                            <option th:value="15">Admin</option>
+                            <option th:value="10">User</option>
+                        </select>
                     </div>
 
                     <div class="userRegisterGroup">

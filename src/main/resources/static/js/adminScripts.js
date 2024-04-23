@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const NEMPLEADO = document.getElementById('NEMPLEADO');
     const NOMBRE = document.getElementById('NOMBRE');
     const PASS = document.getElementById('PASS');
-    const PERFIL = document.getElementById('PERFIL');
 
     form.addEventListener('submit', e => {
         console.log('Form submitted'); // Debugging line
@@ -58,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const nempleadoValue = NEMPLEADO.value.trim();
         const nombreValue = NOMBRE.value.trim();
         const passValue = PASS.value.trim();
-        const perfilValue = PERFIL.value.trim();
 
         if (!nempleadoValue) {
             setError(NEMPLEADO, 'Campo requerido');
@@ -78,20 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
             setError(PASS, 'Campo requerido');
             isValid = false;
         } else if (!isValidPASS(passValue)) {
-            setError(PASS, 'Ingresa una contraseña válida');
+            setError(PASS, 'Ingresa una contraseña válida (Al menos 1 mayúscula, 1 minúscula, 1 número y 1 símbolo).');
             isValid = false;
         } else {
             setSuccess(PASS);
-        }
-
-        if (!perfilValue) {
-            setError(PERFIL, 'Campo requerido');
-            isValid = false;
-        } else if (perfilValue !== '10' && perfilValue !== '15') {
-            setError(PERFIL, 'Rol desconocido.');
-            isValid = false;
-        } else {
-            setSuccess(PERFIL);
         }
 
         return isValid;
@@ -138,13 +126,6 @@ function validatePASS(inputField) {
         document.getElementById("PASS_error").classList.remove("d-none");
     } else {
         document.getElementById("PASS_error").classList.add("d-none");
-    }
-}
-
-function validatePERFIL(inputField) {
-    inputField.value = inputField.value.replace(/[^0-9]/g, '');
-    if (inputField.value.length > 2) {
-        inputField.value = inputField.value.slice(0, 2);
     }
 }
 
