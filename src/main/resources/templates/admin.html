@@ -38,7 +38,7 @@
 <div class="mainContainer">
     <div class="sidebar">
         <button class="sidebar-btn" onclick="openMenu('option1')">AGREGAR USUARIO</button>
-        <button class="sidebar-btn" onclick="openMenu('option2')">Opción 2</button>
+        <button class="sidebar-btn" onclick="openMenu('option2')">EDITAR USUARIO</button>
         <button class="sidebar-btn" onclick="openMenu('option3')">Opción 3</button>
     </div>
 
@@ -115,9 +115,28 @@
         </div>
 
         <div id="option2" class="menu">
-            <!-- Content for Option 2 -->
-            <h2>Option 2 Content</h2>
-            <p>Add info for Option 2 here.</p>
+            <h1>User List</h1>
+            <br>
+            <table>
+                <thead>
+                <tr>
+                    <th>NEMPLEADO</th>
+                    <th>NOMBRE</th>
+                    <th>PASS</th>
+                    <th>PERFIL</th>
+                    <th>TIENDA</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.NEMPLEADO}"></td>
+                    <td th:text="${user.NOMBRE}"></td>
+                    <td th:text="${user.PASS}"></td>
+                    <td th:text="${user.PERFIL}"></td>
+                    <td th:text="${user.TIENDA} ? ${user.TIENDA} : 'NULL'"></td> <!-- Debugging line -->
+                </tr>
+                </tbody>
+            </table>
         </div>
 
         <div id="option3" class="menu">

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class AuthController {
@@ -30,14 +31,16 @@ public class AuthController {
         return "login";
     }
 
-
-    @GetMapping("/user")
-    public String userTemplate() {
-        return "user";
+    @ModelAttribute("user")
+    public UserDto userDto() {
+        return new UserDto();
     }
 
     @GetMapping("/admin")
     public String adminTemplate(Model model, Principal principal) {
+        List<UserDto> users = userService.findAllUsers();
+        model.addAttribute("users", users);
+
         String username = principal.getName();
         String nombre = userService.findNOMBREByNEMPLEADO(username);
 
@@ -49,12 +52,6 @@ public class AuthController {
         return "admin";
     }
 
-
-    @ModelAttribute("user")
-    public UserDto userDto() {
-        return new UserDto();
-    }
-
     @PostMapping("/admin")
     public String registerUser(@ModelAttribute("user") UserDto userDto, RedirectAttributes redirectAttributes) {
         try {
@@ -64,6 +61,11 @@ public class AuthController {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             return "redirect:/admin?error";
         }
+    }
+
+    @GetMapping("/user")
+    public String userTemplate() {
+        return "user";
     }
 
 }
