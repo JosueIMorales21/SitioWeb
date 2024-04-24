@@ -103,6 +103,10 @@
     height: 13px;
 }
 
+
+/*   USER TABLE   */
+
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -165,3 +169,5 @@ tr:hover {
     td:nth-of-type(4):before { content: "PERFIL"; }
     td:nth-of-type(5):before { content: "TIENDA"; }
 }
+
+/*   USER TABLE   */

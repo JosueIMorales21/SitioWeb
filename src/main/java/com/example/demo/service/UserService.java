@@ -6,7 +6,7 @@ import com.example.demo.entity.User;
 import java.util.List;
 
 public interface UserService {
-    User save(UserDto userDto);
+    void save(UserDto userDto);
 
     User findByNempleado(String nempleado);
 
@@ -16,4 +16,6 @@ public interface UserService {
     void deleteUser(Integer id);
 
     String findNOMBREByNEMPLEADO(String NEMPLEADO);
+
+    void updateUser(UserDto userDto);
 }

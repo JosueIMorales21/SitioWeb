@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User save(UserDto userDto) {
+    public void save(UserDto userDto) {
         String nextUserId = generateNextUserId();
 
         if (!isUsernameUnique(userDto.getNEMPLEADO())) {
@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
                 userDto.getTIENDA(),
                 1
         );
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
     public boolean isUsernameUnique(Integer nempleado) {
@@ -98,5 +98,21 @@ public class UserServiceImpl implements UserService {
         userDto.setTIENDA(user.getTIENDA());
         return userDto;
     }
+
+    public void updateUser(UserDto userDto) {
+        User user = convertToEntity(userDto);
+        userRepository.save(user);
+    }
+
+    private User convertToEntity(UserDto userDto) {
+        User user = new User();
+        user.setNEMPLEADO(userDto.getNEMPLEADO());
+        user.setNOMBRE(userDto.getNOMBRE());
+        user.setPASS(userDto.getPASS());
+        user.setPERFIL(userDto.getPERFIL());
+        user.setTIENDA(userDto.getTIENDA());
+        return user;
+    }
+
 
 }

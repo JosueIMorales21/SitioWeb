@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/adminStyles.css}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -26,10 +27,14 @@
     </div>
 </header>
 <div th:if="${param.success}">
-    <div class="alert alert-info text-center">
+    <div th:if="${param.type} == 'register'" class="alert alert-info text-center">
         Usuario registrado correctamente.
     </div>
+    <div th:if="${param.type} == 'update'" class="alert alert-info text-center">
+        Usuario actualizado correctamente.
+    </div>
 </div>
+
 <div th:if="${param.error}">
     <div class="alert alert-danger text-center">
         Número de empleado existente.
@@ -109,13 +114,13 @@
                     </div>
                     <br>
                     <div style="align-items: center">
-                        <button type="submit" class="btn btn-primary">Registrar</button>
+                        <button type="submit" class="btn btn-primary" th:value="register">Registrar</button>
                     </div>
                 </form>
         </div>
 
         <div id="option2" class="menu">
-            <h1>User List</h1>
+            <h1>Lista de usuarios</h1>
             <br>
             <table>
                 <thead>
@@ -125,6 +130,7 @@
                     <th>PASS</th>
                     <th>PERFIL</th>
                     <th>TIENDA</th>
+                    <th>Action</th> <!-- New column for Edit button -->
                 </tr>
                 </thead>
                 <tbody>
@@ -133,12 +139,58 @@
                     <td th:text="${user.NOMBRE}"></td>
                     <td th:text="${user.PASS}"></td>
                     <td th:text="${user.PERFIL}"></td>
-                    <td th:text="${user.TIENDA} ? ${user.TIENDA} : 'NULL'"></td> <!-- Debugging line -->
+                    <td th:text="${user.TIENDA} ? ${user.TIENDA} : 'NULL'"></td>
+                    <td>
+                        <button type="button" class="btn btn-primary" th:attr="data-target='#editModal'+${user.NEMPLEADO}" data-toggle="modal">Edit</button>
+                    </td>
                 </tr>
                 </tbody>
             </table>
-        </div>
+            <div th:each="user : ${users}" th:id="'editModal'+${user.NEMPLEADO}" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit User</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form th:action="@{/admin}" method="post">
+                                <input type="hidden" name="NEMPLEADO" th:value="${user.NEMPLEADO}" />
 
+                                <div class="form-group">
+                                    <label>NOMBRE:</label>
+                                    <input type="text" class="form-control" name="NOMBRE" th:value="${user.NOMBRE}" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label>CONTRASEÑA:</label>
+                                    <input type="text" class="form-control" name="PASS" th:value="${user.PASS}" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="updPerfil">PERFIL:</label>
+                                    <select id="updPerfil" name="PERFIL" class="form-control">
+                                        <option th:value="15" th:selected="${user.PERFIL == 15}">Admin</option>
+                                        <option th:value="10" th:selected="${user.PERFIL == 10}">User</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>TIENDA:</label>
+                                    <input type="text" class="form-control" name="TIENDA" th:value="${user.TIENDA}" />
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" name="action" value="update" class="btn btn-primary">Update</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <div id="option3" class="menu">
             <!-- Content for Option 3 -->
             <h2>Option 3 Content</h2>
@@ -148,5 +200,8 @@
 </div>
 
 <script th:src="@{/js/adminScripts.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
