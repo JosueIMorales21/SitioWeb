@@ -39,8 +39,17 @@ public class UserServiceImpl implements UserService {
     }
 
     public void updateUser(UserDto userDto) {
-        User user = convertToEntity(userDto);
-        userRepository.save(user);
+        User existingUser = userRepository.findByNEMPLEADO(userDto.getNEMPLEADO());
+        if (existingUser != null) {
+            existingUser.setNOMBRE(userDto.getNOMBRE());
+            existingUser.setPASS(userDto.getPASS());
+            existingUser.setPERFIL(userDto.getPERFIL());
+            existingUser.setTIENDA(userDto.getTIENDA());
+
+            userRepository.save(existingUser);
+        } else {
+            throw new RuntimeException("User not found with id: " + userDto.getNEMPLEADO());
+        }
     }
 
     public boolean isUsernameUnique(Integer nempleado) {
