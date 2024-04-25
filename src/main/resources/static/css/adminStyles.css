@@ -1,5 +1,4 @@
 .btn-logout {
-    background-color: var(--bs-yellow);
     color: black;
     padding: 0.8rem 2.5rem;
     margin: 1rem;
@@ -40,7 +39,7 @@
     font-size: 2rem;
     text-align: center; /* Align text to the left */
     border-radius: 0.5rem; /* Add border-radius for rounded corners */
-    background-color: var(--bs-yellow);
+    background-color: #FFD700;
     color: black;
 }
 

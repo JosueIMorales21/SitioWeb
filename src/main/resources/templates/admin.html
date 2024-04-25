@@ -13,7 +13,6 @@
 <body>
 
 <script th:src="@{/js/adminScripts.js}"></script>
-
 <header style="display: flex; justify-content: space-between; align-items: center;">
     <div style="text-align: center; flex: 1;">
         <h1 class="welcomeMessage">¡Bienvenido <span th:text="${name}"></span>!</h1>
@@ -21,7 +20,7 @@
     <div style="text-align: right;">
         <form action="#" th:action="@{/logout}" method="post">
             <div class="mb-3">
-                <button type="submit" class="btn btn-logout">Cerrar Sesión</button>
+                <button type="submit" class="btn btn-logout" style="background-color: #FFD700;">Cerrar Sesión</button>
             </div>
         </form>
     </div>
