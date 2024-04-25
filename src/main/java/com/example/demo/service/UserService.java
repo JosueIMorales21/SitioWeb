@@ -8,12 +8,7 @@ import java.util.List;
 public interface UserService {
     void save(UserDto userDto);
 
-    User findByNempleado(String nempleado);
-
-    UserDto findByNOMBRE(String NOMBRE);
-
     List<UserDto> findAllUsers();
-    void deleteUser(Integer id);
 
     String findNOMBREByNEMPLEADO(String NEMPLEADO);
 

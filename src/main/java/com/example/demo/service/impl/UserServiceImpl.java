@@ -38,6 +38,11 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    public void updateUser(UserDto userDto) {
+        User user = convertToEntity(userDto);
+        userRepository.save(user);
+    }
+
     public boolean isUsernameUnique(Integer nempleado) {
         return userRepository.findByNEMPLEADO(nempleado) == null;
     }
@@ -55,25 +60,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByNempleado(String NEMPLEADO) {
-        return userRepository.findByNEMPLEADO(Integer.parseInt(NEMPLEADO));
-    }
-
-    @Override
-    public UserDto findByNOMBRE(String NOMBRE) {
-        return null;
-    }
-
-    @Override
     public List<UserDto> findAllUsers() {
         List<User> users = userRepository.findAll();
         return users.stream().map((user) -> convertEntityToDto(user))
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public void deleteUser(Integer id) {
-        userRepository.deleteById(Long.valueOf(id));
     }
 
     @Override
@@ -97,11 +87,6 @@ public class UserServiceImpl implements UserService {
         userDto.setPASS(user.getPASS());
         userDto.setTIENDA(user.getTIENDA());
         return userDto;
-    }
-
-    public void updateUser(UserDto userDto) {
-        User user = convertToEntity(userDto);
-        userRepository.save(user);
     }
 
     private User convertToEntity(UserDto userDto) {

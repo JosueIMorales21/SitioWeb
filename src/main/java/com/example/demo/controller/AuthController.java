@@ -58,17 +58,17 @@ public class AuthController {
         try {
             if ("register".equals(action)) {
                 userService.save(userDto);
-                redirectAttributes.addAttribute("success", true);
-                redirectAttributes.addAttribute("type", "register");
+                redirectAttributes.addFlashAttribute("success", true);
+                redirectAttributes.addFlashAttribute("type", "register");
             } else if ("update".equals(action)) {
                 userService.updateUser(userDto);
-                redirectAttributes.addAttribute("success", true);
-                redirectAttributes.addAttribute("type", "update");
+                redirectAttributes.addFlashAttribute("success", true);
+                redirectAttributes.addFlashAttribute("type", "update");
             }
             return "redirect:/admin";
         } catch (RuntimeException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
-            redirectAttributes.addAttribute("error", true);
+            redirectAttributes.addFlashAttribute("error", true);
             return "redirect:/admin";
         }
     }
