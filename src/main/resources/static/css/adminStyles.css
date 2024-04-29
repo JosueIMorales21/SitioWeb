@@ -175,12 +175,12 @@ tr:hover {
 
 .search-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around; /* Change to space-around to evenly distribute space around the items */
     align-items: flex-start;
 }
 
 .search-group {
-    text-align: center;
+    text-align: left;
 }
 
 .search-input {
@@ -189,9 +189,19 @@ tr:hover {
 }
 
 .large-input {
-    width: calc(60% - 5px); /* Double the width */
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    display: block;
+    font-size: 12px;
+    padding: 10px;
+    width: 200%;
 }
 
 .small-input {
-    width: calc(30% - 10px); /* Keep the same width */
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    display: block;
+    font-size: 12px;
+    padding: 10px;
+    width: 80%;
 }

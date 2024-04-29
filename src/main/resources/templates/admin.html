@@ -124,7 +124,7 @@
             <div class="search-container">
                 <div class="search-group">
                     <label for="leftSearchInput">Search by name:</label>
-                    <input type="text" id="leftSearchInput" placeholder="Search users by name..." class="search-input large-input" maxlength="50">
+                    <input type="text" id="leftSearchInput" placeholder="Search users by name..." class="search-input large-input">
                 </div>
                 <div class="search-group">
                     <label for="rightSearchInput">Search by employee number:</label>
@@ -150,9 +150,7 @@
                     <td th:text="${user.PERFIL}"></td>
                     <td th:text="${user.TIENDA} ? ${user.TIENDA} : 'NULL'"></td>
                     <td>
-                        <button type="button" class="btn btn-primary"
-                                th:attr="data-target='#editModal'+${user.NEMPLEADO}" data-toggle="modal">EDITAR
-                        </button>
+                        <button type="button" class="btn btn-primary" th:attr="data-target='#editModal'+${user.NEMPLEADO}" data-toggle="modal">EDITAR</button>
                     </td>
                 </tr>
                 </tbody>

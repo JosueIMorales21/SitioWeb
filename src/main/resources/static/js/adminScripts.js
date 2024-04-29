@@ -138,3 +138,41 @@ function validateTIENDA(inputField) {
 
 ////////////////////////////////////////////////////////////////////////////////////
 /*   SEARCH ENGINE   */
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get references to the search inputs and table body
+    const leftSearchInput = document.getElementById('leftSearchInput');
+    const rightSearchInput = document.getElementById('rightSearchInput');
+    const tbody = document.querySelector('#userTable tbody');
+
+    // Clone the original tbody
+    const originalTbody = tbody.cloneNode(true);
+
+    // Event listeners for the search inputs
+    leftSearchInput.addEventListener('input', filterTable);
+    rightSearchInput.addEventListener('input', filterTable);
+
+    // Function to filter the table rows based on the search inputs
+    function filterTable() {
+        const leftSearchTerm = leftSearchInput.value.trim().toLowerCase();
+        const rightSearchTerm = rightSearchInput.value.trim().toLowerCase();
+
+        // Clear existing rows from the table body
+        tbody.innerHTML = '';
+
+        // Loop through each row in the original table body
+        Array.from(originalTbody.children).forEach(row => {
+            const NOMBRE = row.cells[1].textContent.trim().toLowerCase();
+            const NEMPLEADO = row.cells[0].textContent.trim().toLowerCase();
+
+            // Check if the row matches the search criteria for name and employee number
+            const matchName = NOMBRE.includes(leftSearchTerm);
+            const matchEmployeeNumber = NEMPLEADO.includes(rightSearchTerm);
+
+            // If the row matches both search criteria, append it to the filtered table body
+            if (matchName && matchEmployeeNumber) {
+                tbody.appendChild(row.cloneNode(true));
+            }
+        });
+    }
+});
