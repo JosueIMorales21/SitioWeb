@@ -33,12 +33,12 @@
         Usuario actualizado correctamente.
     </div>
 </div>
-
 <div th:if="${param.error}">
     <div class="alert alert-danger text-center">
-        Número de empleado existente.
+        Ha ocurrido un error: <span th:text="${#request.errorMessage}"></span>
     </div>
 </div>
+
 <div class="mainContainer">
     <div class="sidebar">
         <button class="sidebar-btn" onclick="openMenu('option1')">AGREGAR USUARIO</button>
@@ -51,77 +51,87 @@
         <div id="option1" class="menu">
             <h1>Registro de usuario</h1>
             <br>
-                <form style="align-items: center" id="formAdmin" th:action="@{/admin}" method="post" th:object="${user}">
-                    <div class="userRegisterGroup">
-                        <label for="NEMPLEADO" class="control-label">Número de Empleado:</label>
-                        <input type="text"
-                               id="NEMPLEADO"
-                               name="NEMPLEADO"
-                               class="form-control"
-                               placeholder="Introduce tu número de empleado"
-                               oninput="validateNEMPLEADO(this)"
-                               th:field="*{NEMPLEADO}"
-                        />
-                        <div class="error"></div>
-                    </div>
+            <form style="align-items: center" id="formAdmin" th:action="@{/admin}" method="post" th:object="${user}">
+                <div class="userRegisterGroup">
+                    <label for="NEMPLEADO" class="control-label">Número de Empleado:</label>
+                    <input type="text"
+                           id="NEMPLEADO"
+                           name="NEMPLEADO"
+                           class="form-control"
+                           placeholder="Introduce tu número de empleado"
+                           oninput="validateNEMPLEADO(this)"
+                           th:field="*{NEMPLEADO}"
+                    />
+                    <div class="error"></div>
+                </div>
 
-                    <div class="userRegisterGroup">
-                        <label for="NOMBRE" class="control-label">Nombre:</label>
-                        <input type="text"
-                               id="NOMBRE"
-                               name="NOMBRE"
-                               class="form-control"
-                               placeholder="Introduce tu nombre"
-                               oninput="validateNOMBRE(this)"
-                               th:field="*{NOMBRE}"
-                        />
-                        <div class="error"></div>
-                    </div>
+                <div class="userRegisterGroup">
+                    <label for="NOMBRE" class="control-label">Nombre:</label>
+                    <input type="text"
+                           id="NOMBRE"
+                           name="NOMBRE"
+                           class="form-control"
+                           placeholder="Introduce tu nombre"
+                           oninput="validateNOMBRE(this)"
+                           th:field="*{NOMBRE}"
+                    />
+                    <div class="error"></div>
+                </div>
 
-                    <div class="userRegisterGroup">
-                        <label for="PASS" class="control-label">Contraseña:</label>
-                        <input type="text"
-                               id="PASS"
-                               name="PASS"
-                               class="form-control"
-                               placeholder="Introduce una contraseña"
-                               oninput="validatePASS(this)"
-                               th:field="*{PASS}"
-                        />
-                        <div class="error" id="PASS_error"></div> <!-- Added id="PASS_error" -->
-                    </div>
+                <div class="userRegisterGroup">
+                    <label for="PASS" class="control-label">Contraseña:</label>
+                    <input type="text"
+                           id="PASS"
+                           name="PASS"
+                           class="form-control"
+                           placeholder="Introduce una contraseña"
+                           oninput="validatePASS(this)"
+                           th:field="*{PASS}"
+                    />
+                    <div class="error" id="PASS_error"></div> <!-- Added id="PASS_error" -->
+                </div>
 
-                    <div class="userRegisterGroup">
-                        <label for="PERFIL" class="control-label">Perfil:</label>
-                        <select id="PERFIL" name="PERFIL" class="form-control" th:field="*{PERFIL}">
-                            <option th:value="15">Admin</option>
-                            <option th:value="10">User</option>
-                        </select>
-                    </div>
+                <div class="userRegisterGroup">
+                    <label for="PERFIL" class="control-label">Perfil:</label>
+                    <select id="PERFIL" name="PERFIL" class="form-control" th:field="*{PERFIL}">
+                        <option th:value="15">Admin</option>
+                        <option th:value="10">User</option>
+                    </select>
+                </div>
 
-                    <div class="userRegisterGroup">
-                        <label for="TIENDA" class="control-label">Tienda:</label>
-                        <input type="text"
-                               id="TIENDA"
-                               name="TIENDA"
-                               class="form-control"
-                               placeholder="Introduce tu tienda"
-                               oninput="validateTIENDA(this)"
-                               th:field="*{TIENDA}"
-                        />
-                        <div class="error"></div>
-                    </div>
-                    <br>
-                    <div style="align-items: center">
-                        <button type="submit" class="btn btn-primary" name="action" value="register">Registrar</button>
-                    </div>
-                </form>
+                <div class="userRegisterGroup">
+                    <label for="TIENDA" class="control-label">Tienda:</label>
+                    <input type="text"
+                           id="TIENDA"
+                           name="TIENDA"
+                           class="form-control"
+                           placeholder="Introduce tu tienda"
+                           oninput="validateTIENDA(this)"
+                           th:field="*{TIENDA}"
+                    />
+                    <div class="error"></div>
+                </div>
+                <br>
+                <div style="align-items: center">
+                    <button type="submit" class="btn btn-primary" name="action" value="register">Registrar</button>
+                </div>
+            </form>
         </div>
 
         <div id="option2" class="menu">
             <h1>Lista de usuarios</h1>
             <br>
-            <table>
+            <div class="search-container">
+                <div class="search-group">
+                    <label for="leftSearchInput">Search by name:</label>
+                    <input type="text" id="leftSearchInput" placeholder="Search users by name..." class="search-input large-input" maxlength="50">
+                </div>
+                <div class="search-group">
+                    <label for="rightSearchInput">Search by employee number:</label>
+                    <input type="text" id="rightSearchInput" placeholder="Search users by employee number..." class="search-input small-input" maxlength="10">
+                </div>
+            </div>
+            <table id="userTable">
                 <thead>
                 <tr>
                     <th>NEMPLEADO</th>
@@ -140,12 +150,15 @@
                     <td th:text="${user.PERFIL}"></td>
                     <td th:text="${user.TIENDA} ? ${user.TIENDA} : 'NULL'"></td>
                     <td>
-                        <button type="button" class="btn btn-primary" th:attr="data-target='#editModal'+${user.NEMPLEADO}" data-toggle="modal">EDITAR</button>
+                        <button type="button" class="btn btn-primary"
+                                th:attr="data-target='#editModal'+${user.NEMPLEADO}" data-toggle="modal">EDITAR
+                        </button>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <div th:each="user : ${users}" th:id="'editModal'+${user.NEMPLEADO}" class="modal fade" tabindex="-1" role="dialog">
+            <div th:each="user : ${users}" th:id="'editModal'+${user.NEMPLEADO}" class="modal fade" tabindex="-1"
+                 role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -156,16 +169,16 @@
                         </div>
                         <div class="modal-body">
                             <form th:action="@{/admin}" method="post">
-                                <input type="hidden" name="NEMPLEADO" th:value="${user.NEMPLEADO}" />
+                                <input type="hidden" name="NEMPLEADO" th:value="${user.NEMPLEADO}"/>
 
                                 <div class="form-group">
                                     <label>NOMBRE:</label>
-                                    <input type="text" class="form-control" name="NOMBRE" th:value="${user.NOMBRE}" />
+                                    <input type="text" class="form-control" name="NOMBRE" th:value="${user.NOMBRE}"/>
                                 </div>
 
                                 <div class="form-group">
                                     <label>CONTRASEÑA:</label>
-                                    <input type="text" class="form-control" name="PASS" th:value="${user.PASS}" />
+                                    <input type="text" class="form-control" name="PASS" th:value="${user.PASS}"/>
                                 </div>
 
                                 <div class="form-group">
@@ -178,11 +191,12 @@
 
                                 <div class="form-group">
                                     <label>TIENDA:</label>
-                                    <input type="text" class="form-control" name="TIENDA" th:value="${user.TIENDA}" />
+                                    <input type="text" class="form-control" name="TIENDA" th:value="${user.TIENDA}"/>
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="submit" name="action" value="update" class="btn btn-primary">ACEPTAR</button>
+                                    <button type="submit" name="action" value="update" class="btn btn-primary">ACEPTAR
+                                    </button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
                                 </div>
                             </form>
@@ -190,10 +204,11 @@
                     </div>
                 </div>
             </div>
-        <div id="option3" class="menu">
-            <!-- Content for Option 3 -->
-            <h2>Option 3 Content</h2>
-            <p>Add info for Option 3 here.</p>
+            <div id="option3" class="menu">
+                <!-- Content for Option 3 -->
+                <h2>Option 3 Content</h2>
+                <p>Add info for Option 3 here.</p>
+            </div>
         </div>
     </div>
 </div>

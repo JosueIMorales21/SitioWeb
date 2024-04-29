@@ -73,7 +73,6 @@ public class AuthController {
         }
     }
 
-
     @GetMapping("/user")
     public String userTemplate() {
         return "user";

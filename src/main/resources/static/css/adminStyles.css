@@ -172,3 +172,26 @@ tr:hover {
 }
 
 /*   USER TABLE   */
+
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.search-group {
+    text-align: center;
+}
+
+.search-input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.large-input {
+    width: calc(60% - 5px); /* Double the width */
+}
+
+.small-input {
+    width: calc(30% - 10px); /* Keep the same width */
+}
