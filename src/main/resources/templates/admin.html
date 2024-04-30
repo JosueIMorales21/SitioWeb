@@ -25,17 +25,14 @@
         </form>
     </div>
 </header>
-<div th:if="${param.success}">
-    <div th:if="${param.type} == 'register'" class="alert alert-info text-center">
-        Usuario registrado correctamente.
+
+<!-- Display success message -->
+<div style="text-align: center;" th:action="@{/admin}">
+    <div th:if="${success}">
+        <div class="alert alert-success" th:text="${message}"></div>
     </div>
-    <div th:if="${param.type} == 'update'" class="alert alert-info text-center">
-        Usuario actualizado correctamente.
-    </div>
-</div>
-<div th:if="${param.error}">
-    <div class="alert alert-danger text-center">
-        Ha ocurrido un error: <span th:text="${#request.errorMessage}"></span>
+    <div th:if="${error}">
+        <div class="alert alert-danger" th:text="${errorMessage}"></div>
     </div>
 </div>
 
@@ -117,18 +114,17 @@
                 </div>
             </form>
         </div>
-
         <div id="option2" class="menu">
             <h1>Lista de usuarios</h1>
             <br>
             <div class="search-container">
                 <div class="search-group">
-                    <label for="leftSearchInput">Search by name:</label>
-                    <input type="text" id="leftSearchInput" placeholder="Search users by name..." class="search-input large-input">
+                    <label for="leftSearchInput">Buscar por nombre:</label>
+                    <input type="text" id="leftSearchInput" placeholder="Ingresa un nombre..." class="search-input large-input" maxlength="50">
                 </div>
                 <div class="search-group">
-                    <label for="rightSearchInput">Search by employee number:</label>
-                    <input type="text" id="rightSearchInput" placeholder="Search users by employee number..." class="search-input small-input" maxlength="10">
+                    <label for="rightSearchInput">Buscar por número de empleado:</label>
+                    <input type="text" id="rightSearchInput" placeholder="Ingresa número de empleado..." class="search-input small-input" maxlength="10">
                 </div>
             </div>
             <table id="userTable">
@@ -139,7 +135,7 @@
                     <th>PASS</th>
                     <th>PERFIL</th>
                     <th>TIENDA</th>
-                    <th>Action</th> <!-- New column for Edit button -->
+                    <th></th> <!-- New column for Edit button -->
                 </tr>
                 </thead>
                 <tbody>
@@ -160,7 +156,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Edit User</h5>
+                            <h5 class="modal-title">Editar usuario</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -171,12 +167,16 @@
 
                                 <div class="form-group">
                                     <label>NOMBRE:</label>
-                                    <input type="text" class="form-control" name="NOMBRE" th:value="${user.NOMBRE}"/>
+                                    <label>
+                                        <input type="text" class="form-control" name="NOMBRE" th:value="${user.NOMBRE}"/>
+                                    </label>
                                 </div>
 
                                 <div class="form-group">
                                     <label>CONTRASEÑA:</label>
-                                    <input type="text" class="form-control" name="PASS" th:value="${user.PASS}"/>
+                                    <label>
+                                        <input type="text" class="form-control" name="PASS" th:value="${user.PASS}"/>
+                                    </label>
                                 </div>
 
                                 <div class="form-group">
@@ -189,7 +189,9 @@
 
                                 <div class="form-group">
                                     <label>TIENDA:</label>
-                                    <input type="text" class="form-control" name="TIENDA" th:value="${user.TIENDA}"/>
+                                    <label>
+                                        <input type="text" class="form-control" name="TIENDA" th:value="${user.TIENDA}"/>
+                                    </label>
                                 </div>
 
                                 <div class="modal-footer">
