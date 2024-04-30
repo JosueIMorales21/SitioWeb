@@ -59,11 +59,11 @@ public class AuthController {
             if ("register".equals(action)) {
                 userService.save(userDto);
                 redirectAttributes.addFlashAttribute("success", true);
-                redirectAttributes.addFlashAttribute("message", "User registered successfully.");
+                redirectAttributes.addFlashAttribute("message", "Usuario registrado correctamente.");
             } else if ("update".equals(action)) {
                 userService.updateUser(userDto);
                 redirectAttributes.addFlashAttribute("success", true);
-                redirectAttributes.addFlashAttribute("message", "User updated successfully.");
+                redirectAttributes.addFlashAttribute("message", "Usuario actualizado correctamente.");
             }
         } catch (RuntimeException e) {
             redirectAttributes.addFlashAttribute("error", true);
