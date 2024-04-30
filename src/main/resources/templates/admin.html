@@ -132,7 +132,6 @@
                 <tr>
                     <th>NEMPLEADO</th>
                     <th>NOMBRE</th>
-                    <th>PASS</th>
                     <th>PERFIL</th>
                     <th>TIENDA</th>
                     <th></th> <!-- New column for Edit button -->
@@ -142,7 +141,6 @@
                 <tr th:each="user : ${users}">
                     <td th:text="${user.NEMPLEADO}"></td>
                     <td th:text="${user.NOMBRE}"></td>
-                    <td th:text="${user.PASS}"></td>
                     <td th:text="${user.PERFIL}"></td>
                     <td th:text="${user.TIENDA} ? ${user.TIENDA} : 'NULL'"></td>
                     <td>
@@ -175,7 +173,7 @@
                                 <div class="form-group">
                                     <label>CONTRASEÑA:</label>
                                     <label>
-                                        <input type="text" class="form-control" name="PASS" th:value="${user.PASS}"/>
+                                        <input type="password" class="form-control" name="PASS" th:value="${user.PASS}"/>
                                     </label>
                                 </div>
 
