@@ -120,11 +120,11 @@
             <div class="search-container">
                 <div class="search-group">
                     <label for="leftSearchInput">Buscar por nombre:</label>
-                    <input type="text" id="leftSearchInput" placeholder="Ingresa un nombre..." class="search-input large-input" maxlength="50">
+                    <input oninput="validateNOMBRE(this)" type="text" id="leftSearchInput" placeholder="Ingresa un nombre..." class="search-input large-input" maxlength="50">
                 </div>
                 <div class="search-group">
                     <label for="rightSearchInput">Buscar por número de empleado:</label>
-                    <input type="text" id="rightSearchInput" placeholder="Ingresa número de empleado..." class="search-input small-input" maxlength="10">
+                    <input oninput="validateNEMPLEADO(this)" type="text" id="rightSearchInput" placeholder="Ingresa número de empleado..." class="search-input small-input" maxlength="10">
                 </div>
             </div>
             <table id="userTable">
