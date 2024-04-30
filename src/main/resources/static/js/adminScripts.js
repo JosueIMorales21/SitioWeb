@@ -76,12 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
             setError(PASS, 'Campo requerido');
             isValid = false;
         } else if (!isValidPASS(passValue)) {
-            setError(PASS, 'Ingresa una contraseña válida (Al menos 1 mayúscula, 1 minúscula, 1 número y 1 símbolo).');
+            setError(PASS, 'Ingresa una contraseña válida (8 caracteres, al menos 1 mayúscula, 1 minúscula, 1 número y 1 símbolo).');
             isValid = false;
         } else {
             setSuccess(PASS);
         }
-
         return isValid;
     };
 })
