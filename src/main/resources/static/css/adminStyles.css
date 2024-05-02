@@ -241,7 +241,7 @@ tr:hover {
     display: block;
     font-size: 1rem; /* Adjusted font size */
     padding: 8px; /* Adjusted padding */
-    width: 80%;
+    width: 100%;
     box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
 
