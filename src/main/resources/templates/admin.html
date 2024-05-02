@@ -142,7 +142,7 @@
                     <td th:text="${user.NEMPLEADO}"></td>
                     <td th:text="${user.NOMBRE}"></td>
                     <td th:text="${user.PERFIL}"></td>
-                    <td th:text="${user.TIENDA} ? ${user.TIENDA} : 'NULL'"></td>
+                    <td th:text="${user.TIENDA} ? ${user.TIENDA} : '-'"></td>
                     <td>
                         <button type="button" class="btn btn-primary" th:attr="data-target='#editModal'+${user.NEMPLEADO}" data-toggle="modal">EDITAR</button>
                     </td>
