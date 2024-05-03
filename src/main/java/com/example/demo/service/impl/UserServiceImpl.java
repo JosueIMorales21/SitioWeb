@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
         User user = new User(
                 nextUserId,
-                userDto.getNEMDOCPLEADO(),
+                userDto.getNEMPLEADO(),
                 userDto.getNOMBRE(),
                 userDto.getPASS(),
                 userDto.getPERFIL(),
