@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
         User user = new User(
                 nextUserId,
-                userDto.getNEMPLEADO(),
+                userDto.getNEMDOCPLEADO(),
                 userDto.getNOMBRE(),
                 userDto.getPASS(),
                 userDto.getPERFIL(),
@@ -97,16 +97,5 @@ public class UserServiceImpl implements UserService {
         userDto.setTIENDA(user.getTIENDA());
         return userDto;
     }
-
-    private User convertToEntity(UserDto userDto) {
-        User user = new User();
-        user.setNEMPLEADO(userDto.getNEMPLEADO());
-        user.setNOMBRE(userDto.getNOMBRE());
-        user.setPASS(userDto.getPASS());
-        user.setPERFIL(userDto.getPERFIL());
-        user.setTIENDA(userDto.getTIENDA());
-        return user;
-    }
-
 
 }

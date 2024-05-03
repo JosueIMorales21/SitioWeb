@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.ProductDto;
 import com.example.demo.dto.UserDto;
+import com.example.demo.service.ProductService;
 import com.example.demo.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +19,11 @@ import java.util.List;
 public class AuthController {
 
     private final UserService userService;
+    private final ProductService productService;
 
-    public AuthController(UserService userService) {
+    public AuthController(UserService userService, ProductService productService) {
         this.userService = userService;
+        this.productService = productService;
     }
 
     @GetMapping("index")
@@ -35,6 +39,11 @@ public class AuthController {
     @ModelAttribute("user")
     public UserDto userDto() {
         return new UserDto();
+    }
+
+    @ModelAttribute("product")
+    public ProductDto productDto(){
+        return new ProductDto();
     }
 
     @GetMapping("/admin")
@@ -54,7 +63,7 @@ public class AuthController {
     }
 
     @PostMapping("/admin")
-    public String admin(@ModelAttribute("user") UserDto userDto, RedirectAttributes redirectAttributes, @RequestParam(required = false) String action) {
+    public String admin(@ModelAttribute("user") UserDto userDto, @ModelAttribute("product") ProductDto productDto, RedirectAttributes redirectAttributes, @RequestParam(required = false) String action) {
         try {
             if ("register".equals(action)) {
                 userService.save(userDto);
@@ -64,6 +73,10 @@ public class AuthController {
                 userService.updateUser(userDto);
                 redirectAttributes.addFlashAttribute("success", true);
                 redirectAttributes.addFlashAttribute("message", "Usuario actualizado correctamente.");
+            } else if ("registerProd".equals(action)) {
+                productService.save(productDto);
+                redirectAttributes.addFlashAttribute("success", true);
+                redirectAttributes.addFlashAttribute("message", "Producto registrado correctamente.");
             }
         } catch (RuntimeException e) {
             redirectAttributes.addFlashAttribute("error", true);

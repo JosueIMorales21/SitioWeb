@@ -191,7 +191,7 @@ tr:hover {
 
 .search-container {
     display: flex;
-    justify-content: space-around; /* Change to space-around to evenly distribute space around the items */
+    justify-content: space-around;
     align-items: flex-start;
 }
 
@@ -239,10 +239,10 @@ tr:hover {
     border: 2px solid #f0f0f0;
     border-radius: 4px;
     display: block;
-    font-size: 1rem; /* Adjusted font size */
-    padding: 8px; /* Adjusted padding */
+    font-size: 1rem;
+    padding: 8px;
     width: 100%;
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    box-sizing: border-box;
 }
 
 .form-group input:focus {

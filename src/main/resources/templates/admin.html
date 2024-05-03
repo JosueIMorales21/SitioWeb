@@ -184,6 +184,7 @@
                                                class="form-control"
                                                name="PASS"
                                                th:value="${user.PASS}"
+                                               oninput="validatePASS(this)"
                                         />
                                     </label>
                                 </div>
@@ -219,11 +220,123 @@
                     </div>
                 </div>
             </div>
-            <div id="option3" class="menu">
-                <!-- Content for Option 3 -->
-                <h2>Option 3 Content</h2>
-                <p>Add info for Option 3 here.</p>
-            </div>
+        </div>
+        <div id="option3" class="menu">
+            <h1>Registro de productos</h1>
+            <br>
+            <form style="align-items: center" id="formProduct" th:action="@{/admin}" method="post" th:object="${product}">
+                <div class="userRegisterGroup">
+                    <label for="SKU" class="control-label">SKU:</label>
+                    <input type="text"
+                           id="SKU"
+                           name="SKU"
+                           class="form-control"
+                           placeholder="Introduce un SKU"
+                           th:field="*{SKU}"
+                    />
+                    <div class="error"></div>
+                </div>
+
+                <div class="userRegisterGroup">
+                    <label for="DESCRIPCION" class="control-label">Descripción:</label>
+                    <input type="text"
+                           id="DESCRIPCION"
+                           name="DESCRIPCION"
+                           class="form-control"
+                           placeholder="Introduce una descripción"
+                           th:field="*{DESCRIPCION}"
+                    />
+                    <div class="error"></div>
+                </div>
+
+                <div class="userRegisterGroup">
+                    <label for="COSTO" class="control-label">Costo:</label>
+                    <input type="text"
+                           id="COSTO"
+                           name="COSTO"
+                           class="form-control"
+                           placeholder="Introduce un costo"
+                           th:field="*{COSTO}"
+                    />
+                    <div class="error"></div>
+                </div>
+
+                <div class="userRegisterGroup">
+                    <label for="PRECIO" class="control-label">Precio:</label>
+                    <input type="text"
+                           id="PRECIO"
+                           name="PRECIO"
+                           class="form-control"
+                           placeholder="Introduce un precio"
+                           th:field="*{PRECIO}"
+                    />
+                    <div class="error"></div>
+                </div>
+
+                <div class="userRegisterGroup">
+                    <label for="DEPARTAMENTO" class="control-label">Departamento:</label>
+                    <input type="text"
+                           id="DEPARTAMENTO"
+                           name="DEPARTAMENTO"
+                           class="form-control"
+                           placeholder="Introduce un departamento"
+                           th:field="*{DEPARTAMENTO}"
+                    />
+                    <div class="error"></div>
+                </div>
+
+                <div class="userRegisterGroup">
+                    <label for="TIENDA_PROD" class="control-label">Tienda:</label>
+                    <input type="text"
+                           id="TIENDA_PROD"
+                           name="TIENDA_PROD"
+                           class="form-control"
+                           placeholder="Introduce una tienda"
+                           th:field="*{TIENDA}"
+                    />
+                    <div class="error"></div>
+                </div>
+
+                <div class="userRegisterGroup">
+                    <label for="DESCUENTO" class="control-label">Descuento:</label>
+                    <input type="text"
+                           id="DESCUENTO"
+                           name="DESCUENTO"
+                           class="form-control"
+                           placeholder="Introduce un descuento"
+                           th:field="*{DESCUENTO}"
+                    />
+                    <div class="error"></div>
+                </div>
+
+                <div class="userRegisterGroup">
+                    <label for="CANTIDAD_TOTAL" class="control-label">Cantidad total:</label>
+                    <input type="text"
+                           id="CANTIDAD_TOTAL"
+                           name="CANTIDAD_TOTAL"
+                           class="form-control"
+                           placeholder="Introduce una cantidad total"
+                           th:field="*{CANTIDAD_TOTAL}"
+                    />
+                    <div class="error"></div>
+                </div>
+
+                <div class="userRegisterGroup">
+                    <label for="CANTIDAD_DISPONIBLE" class="control-label">Cantidad disponible:</label>
+                    <input type="text"
+                           id="CANTIDAD_DISPONIBLE"
+                           name="CANTIDAD_DISPONIBLE"
+                           class="form-control"
+                           placeholder="Introduce una cantidad disponible"
+                           th:field="*{CANTIDAD_DISPONIBLE}"
+                    />
+                    <div class="error"></div>
+                </div>
+                <br>
+                <div style="align-items: center">
+                    <button type="submit" class="btn btn-primary" name="action" value="registerProd">Registrar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
