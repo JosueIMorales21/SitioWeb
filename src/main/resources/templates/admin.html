@@ -41,6 +41,7 @@
         <button class="sidebar-btn" onclick="openMenu('option1')">AGREGAR USUARIO</button>
         <button class="sidebar-btn" onclick="openMenu('option2')">EDITAR USUARIO</button>
         <button class="sidebar-btn" onclick="openMenu('option3')">AGREGAR PRODUCTO</button>
+        <button class="sidebar-btn" onclick="openMenu('option4')">EDITAR PRODUCTO</button>
     </div>
 
     <!-- Content Area -->
@@ -346,6 +347,173 @@
                     <button type="submit" class="btn btn-primary" name="action" value="registerProd">Registrar</button>
                 </div>
             </form>
+        </div>
+        <div id="option4" class="menu">
+            <h1>Lista de productos</h1>
+            <br>
+            <div class="search-container">
+                <div class="search-group">
+                    <label for="leftSearchInput">Buscar por descripción:</label>
+                    <label for="leftSearchInput2"></label><input oninput="validateNOMBRE(this)" type="text" id="leftSearchInput2" placeholder="Ingresa una descripción..." class="search-input large-input" maxlength="50">
+                </div>
+                <div class="search-group">
+                    <label for="rightSearchInput">Buscar por SKU:</label>
+                    <label for="rightSearchInput2"></label><input oninput="validateNEMPLEADO(this)" type="text" id="rightSearchInput2" placeholder="Ingresa número de empleado..." class="search-input small-input" maxlength="1">
+                </div>
+            </div>
+            <table id="userTable2">
+                <thead>
+                <tr>
+                    <th>SKU</th>
+                    <th>DESCRIPCIÓN</th>
+                    <th>COSTO</th>
+                    <th>PRECIO</th>
+                    <th>DEPARTAMENTO</th>
+                    <th>TIENDA</th>
+                    <th>DESCUENTO</th>
+                    <th>CANTIDAD TOTAL</th>
+                    <th>CANTIDAD DISPONIBLE</th>
+                    <th></th> <!-- New column for Edit button -->
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.SKU}"></td>
+                    <td th:text="${product.DESCRIPCION}"></td>
+                    <td th:text="${product.COSTO}"></td>
+                    <td th:text="${product.PRECIO}"></td>
+                    <td th:text="${product.DEPARTAMENTO}"></td>
+                    <td th:text="${product.TIENDA}"></td>
+                    <td th:text="${product.DESCUENTO}"></td>
+                    <td th:text="${product.CANTIDAD_TOTAL}"></td>
+                    <td th:text="${product.CANTIDAD_DISPONIBLE}"></td>
+                    <td>
+                        <button type="button" class="btn btn-primary" th:attr="data-target='#editModal'+${product.SKU}" data-toggle="modal">EDITAR</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div th:each="product : ${products}" th:id="'editModal'+${product.SKU}" class="modal fade" tabindex="-1"
+                 role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Editar producto</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form th:action="@{/admin}" method="post">
+                                <div class="form-group">
+                                    <label>SKU:</label>
+                                    <label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="SKU"
+                                               th:value="${product.SKU}"
+                                        />
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>DESCRIPCIÓN:</label>
+                                    <label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="DESCRIPCION"
+                                               th:value="${product.DESCRIPCION}"
+                                        />
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>COSTO:</label>
+                                    <label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="COSTO"
+                                               th:value="${product.COSTO}"
+                                        />
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>PRECIO:</label>
+                                    <label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="PRECIO"
+                                               th:value="${product.PRECIO}"
+                                        />
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>DEPARTAMENTO:</label>
+                                    <label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="DEPARTAMENTO"
+                                               th:value="${product.DEPARTAMENTO}"
+                                        />
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>TIENDA:</label>
+                                    <label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="TIENDA"
+                                               th:value="${product.TIENDA}"
+                                        />
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>DESCUENTO:</label>
+                                    <label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="DESCUENTO"
+                                               th:value="${product.DESCUENTO}"
+                                        />
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>CANTIDAD TOTAL:</label>
+                                    <label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="CANTIDAD_TOTAL"
+                                               th:value="${product.CANTIDAD_TOTAL}"
+                                        />
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>CANTIDAD DISPONIBLE:</label>
+                                    <label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="CANTIDAD_DISPONIBLE"
+                                               th:value="${product.CANTIDAD_DISPONIBLE}"
+                                        />
+                                    </label>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" name="action" value="updateProduct" class="btn btn-primary">ACEPTAR
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

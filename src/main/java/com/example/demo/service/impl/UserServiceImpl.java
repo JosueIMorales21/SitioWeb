@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
 
             userRepository.save(existingUser);
         } else {
-            throw new RuntimeException("User not found with id: " + userDto.getNEMPLEADO());
+            throw new RuntimeException("Usuario no encontrado con el número: " + userDto.getNEMPLEADO());
         }
     }
 

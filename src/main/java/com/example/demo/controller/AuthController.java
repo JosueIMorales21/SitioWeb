@@ -49,7 +49,9 @@ public class AuthController {
     @GetMapping("/admin")
     public String adminTemplate(Model model, Principal principal) {
         List<UserDto> users = userService.findAllUsers();
+        List<ProductDto> products = productService.findAllProducts();
         model.addAttribute("users", users);
+        model.addAttribute("products", products);
 
         String username = principal.getName();
         String nombre = userService.findNOMBREByNEMPLEADO(username);
@@ -77,6 +79,10 @@ public class AuthController {
                 productService.save(productDto);
                 redirectAttributes.addFlashAttribute("success", true);
                 redirectAttributes.addFlashAttribute("message", "Producto registrado correctamente.");
+            } else if ("updateProduct".equals(action)) {
+                productService.updateProduct(productDto);
+                redirectAttributes.addFlashAttribute("success", true);
+                redirectAttributes.addFlashAttribute("message", "Producto actualizado correctamente");
             }
         } catch (RuntimeException e) {
             redirectAttributes.addFlashAttribute("error", true);
