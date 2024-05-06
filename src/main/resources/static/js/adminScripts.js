@@ -175,3 +175,136 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+document.addEventListener('DOMContentLoaded', () => {
+    const form2 = document.getElementById('formProduct');
+    const SKU = document.getElementById('SKU');
+    const DESCRIPCION = document.getElementById('DESCRIPCION');
+    const COSTO = document.getElementById('COSTO');
+    const PRECIO = document.getElementById('PRECIO');
+    const DEPARTAMENTO = document.getElementById('DEPARTAMENTO');
+    const TIENDA = document.getElementById('TIENDA_PROD');
+    const DESCUENTO = document.getElementById('DESCUENTO');
+    const CANTIDAD_TOTAL = document.getElementById('CANTIDAD_TOTAL');
+    const CANTIDAD_DISPONIBLE = document.getElementById('CANTIDAD_DISPONIBLE');
+
+    form2.addEventListener('submit', e => {
+        console.log('Form submitted'); // Debugging line
+        if (!validateInputs()) {
+            e.preventDefault(); // Prevent the form from being submitted
+        }
+    });
+
+    const setError = (element1, message) => {
+        const inputControl = element1.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+
+        errorDisplay.innerText = message;
+        inputControl.classList.add('error');
+        inputControl.classList.remove('success');
+    }
+
+    const setSuccess = element => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+
+        errorDisplay.innerText = '';
+        inputControl.classList.add('success');
+        inputControl.classList.remove('error');
+    };
+
+    const validateInputs = () => {
+        let isValid = true;
+
+        const skuValue = SKU.value.trim();
+        const descripcionValue = DESCRIPCION.value.trim();
+        const costoValue = COSTO.value.trim();
+        const precioValue = PRECIO.value.trim();
+        const departamentoValue = DEPARTAMENTO.value.trim();
+        const tiendaValue = TIENDA.value.trim();
+        const descuentoValue = DESCUENTO.value.trim();
+        const cantidad_totalValue = CANTIDAD_TOTAL.value.trim();
+        const cantidad_disponibleValue = CANTIDAD_DISPONIBLE.value.trim();
+
+        if (!skuValue) {
+            setError(SKU, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(SKU);
+        }
+
+        if (!descripcionValue) {
+            setError(DESCRIPCION, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(DESCRIPCION);
+        }
+
+        if (!costoValue) {
+            setError(COSTO, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(COSTO);
+        }
+
+        if (!precioValue) {
+            setError(PRECIO, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(PRECIO);
+        }
+
+        if (!departamentoValue) {
+            setError(DEPARTAMENTO, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(DEPARTAMENTO);
+        }
+
+        if (!tiendaValue) {
+            setError(TIENDA, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(TIENDA);
+        }
+
+        if (!descuentoValue) {
+            setError(DESCUENTO, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(DESCUENTO);
+        }
+
+        if (!cantidad_totalValue) {
+            setError(CANTIDAD_TOTAL, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(CANTIDAD_TOTAL);
+        }
+
+        if (!cantidad_disponibleValue) {
+            setError(CANTIDAD_DISPONIBLE, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(CANTIDAD_DISPONIBLE);
+        }
+
+        return isValid;
+    };
+})
+
+function validateSKU(inputField) {
+    inputField.value = inputField.value.replace(/[^0-9]/g, '');
+    if (inputField.value.length > 14) {
+        inputField.value = inputField.value.slice(0, 14);
+    }
+}
+
+function validateDEPA(inputField) {
+    inputField.value = inputField.value.replace(/[^0-9]/g, '');
+    if (inputField.value.length > 2) {
+        inputField.value = inputField.value.slice(0, 2);
+    }
+}

@@ -40,7 +40,7 @@
     <div class="sidebar">
         <button class="sidebar-btn" onclick="openMenu('option1')">AGREGAR USUARIO</button>
         <button class="sidebar-btn" onclick="openMenu('option2')">EDITAR USUARIO</button>
-        <button class="sidebar-btn" onclick="openMenu('option3')">Opción 3</button>
+        <button class="sidebar-btn" onclick="openMenu('option3')">AGREGAR PRODUCTO</button>
     </div>
 
     <!-- Content Area -->
@@ -233,6 +233,7 @@
                            class="form-control"
                            placeholder="Introduce un SKU"
                            th:field="*{SKU}"
+                           oninput="validateSKU(this)"
                     />
                     <div class="error"></div>
                 </div>
@@ -245,6 +246,7 @@
                            class="form-control"
                            placeholder="Introduce una descripción"
                            th:field="*{DESCRIPCION}"
+                           oninput="validateNOMBRE(this)"
                     />
                     <div class="error"></div>
                 </div>
@@ -257,6 +259,7 @@
                            class="form-control"
                            placeholder="Introduce un costo"
                            th:field="*{COSTO}"
+                           oninput="validateNEMPLEADO(this)"
                     />
                     <div class="error"></div>
                 </div>
@@ -269,6 +272,7 @@
                            class="form-control"
                            placeholder="Introduce un precio"
                            th:field="*{PRECIO}"
+                           oninput="validateNEMPLEADO(this)"
                     />
                     <div class="error"></div>
                 </div>
@@ -281,6 +285,7 @@
                            class="form-control"
                            placeholder="Introduce un departamento"
                            th:field="*{DEPARTAMENTO}"
+                           oninput="validateDEPA(this)"
                     />
                     <div class="error"></div>
                 </div>
@@ -293,6 +298,7 @@
                            class="form-control"
                            placeholder="Introduce una tienda"
                            th:field="*{TIENDA}"
+                           oninput="validateTIENDA(this)"
                     />
                     <div class="error"></div>
                 </div>
@@ -305,6 +311,7 @@
                            class="form-control"
                            placeholder="Introduce un descuento"
                            th:field="*{DESCUENTO}"
+                           oninput="validateNEMPLEADO(this)"
                     />
                     <div class="error"></div>
                 </div>
@@ -317,6 +324,7 @@
                            class="form-control"
                            placeholder="Introduce una cantidad total"
                            th:field="*{CANTIDAD_TOTAL}"
+                           oninput="validateNEMPLEADO(this)"
                     />
                     <div class="error"></div>
                 </div>
@@ -329,6 +337,7 @@
                            class="form-control"
                            placeholder="Introduce una cantidad disponible"
                            th:field="*{CANTIDAD_DISPONIBLE}"
+                           oninput="validateNEMPLEADO(this)"
                     />
                     <div class="error"></div>
                 </div>
