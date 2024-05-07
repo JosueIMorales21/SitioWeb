@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /*     EDIT USER FORM     */
 
+
 ///////////////////////////////////////////////////////////////////
 
 function validateNEMPLEADO(inputField) {

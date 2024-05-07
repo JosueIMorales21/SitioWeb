@@ -162,10 +162,11 @@
                         </div>
                         <div class="modal-body">
                             <input type="hidden" id="userNEMPLEADO" th:value="${user.NEMPLEADO}" />
-                            <form th:action="@{/admin}" method="post" th:id="'editUserForm'+${user.NEMPLEADO}">
+                            <form th:action="@{/admin}" method="post" th:id="'editUserForm' + ${user.NEMPLEADO}">
                                 <input type="hidden"
                                        name="NEMPLEADO"
                                        th:value="${user.NEMPLEADO}"
+                                       th:id="'NEMPLEADO' + ${user.NEMPLEADO}"
                                 />
 
                                 <div class="form-group">
@@ -175,6 +176,7 @@
                                                class="form-control"
                                                name="NOMBRE"
                                                th:value="${user.NOMBRE}"
+                                               th:id="'NOMBRE' + ${user.NEMPLEADO}"
                                                oninput="validateNOMBRE(this)"
                                         />
                                     </label>
@@ -188,6 +190,7 @@
                                                class="form-control"
                                                name="PASS"
                                                th:value="${user.PASS}"
+                                               th:id="'PASS' + ${user.NEMPLEADO}"
                                                oninput="validatePASS(this)"
                                         />
                                     </label>
@@ -195,7 +198,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label th:for="'updateProfile-' + ${user.NEMPLEADO}" class="control-label">Perfil:</label>
+                                    <label th:for="'updateProfile-' + ${user.NEMPLEADO}" class="control-label" th:id="'PERFIL' + ${user.NEMPLEADO}">Perfil:</label>
                                     <label>
                                         <select th:id="'updateProfile-' + ${user.NEMPLEADO}" name="PERFIL" class="form-control" th:value="${user.PERFIL}">
                                             <option th:value="15">Admin</option>
@@ -211,6 +214,7 @@
                                                class="form-control"
                                                name="TIENDA"
                                                th:value="${user.TIENDA}"
+                                               th:id="'TIENDA' + ${user.NEMPLEADO}"
                                                oninput="validateTIENDA(this)"
                                         />
                                     </label>
