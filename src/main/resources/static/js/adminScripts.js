@@ -14,7 +14,7 @@ function openMenu(menuId) {
         menu.style.display = "none";
     }
 }
-///////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('formAdmin');
     const NEMPLEADO = document.getElementById('NEMPLEADO');
@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const PASS = document.getElementById('PASS');
 
     form.addEventListener('submit', e => {
-        console.log('Form submitted'); // Debugging line
         if (!validateInputs()) {
             e.preventDefault(); // Prevent the form from being submitted
         }
@@ -85,6 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 })
 
+
+/*     EDIT USER FORM     */
 
 ///////////////////////////////////////////////////////////////////
 
@@ -167,6 +168,44 @@ document.addEventListener('DOMContentLoaded', function() {
             // Check if the row matches the search criteria for name and employee number
             const matchName = NOMBRE.includes(leftSearchTerm);
             const matchEmployeeNumber = NEMPLEADO.includes(rightSearchTerm);
+
+            // If the row matches both search criteria, append it to the filtered table body
+            if (matchName && matchEmployeeNumber) {
+                tbody.appendChild(row.cloneNode(true));
+            }
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get references to the search inputs and table body
+    const leftSearchInput2 = document.getElementById('leftSearchInput2');
+    const rightSearchInput2 = document.getElementById('rightSearchInput2');
+    const tbody = document.querySelector('#userTable2 tbody');
+
+    // Clone the original tbody
+    const originalTbody = tbody.cloneNode(true);
+
+    // Event listeners for the search inputs
+    leftSearchInput2.addEventListener('input', filterTable);
+    rightSearchInput2.addEventListener('input', filterTable);
+
+    // Function to filter the table rows based on the search inputs
+    function filterTable() {
+        const leftSearchTerm = leftSearchInput2.value.trim().toLowerCase();
+        const rightSearchTerm = rightSearchInput2.value.trim().toLowerCase();
+
+        // Clear existing rows from the table body
+        tbody.innerHTML = '';
+
+        // Loop through each row in the original table body
+        Array.from(originalTbody.children).forEach(row => {
+            const DESCRIPCION = row.cells[1].textContent.trim().toLowerCase();
+            const SKU = row.cells[0].textContent.trim().toLowerCase();
+
+            // Check if the row matches the search criteria for name and employee number
+            const matchName = DESCRIPCION.includes(leftSearchTerm);
+            const matchEmployeeNumber = SKU.includes(rightSearchTerm);
 
             // If the row matches both search criteria, append it to the filtered table body
             if (matchName && matchEmployeeNumber) {
