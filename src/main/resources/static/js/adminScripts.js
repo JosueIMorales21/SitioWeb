@@ -87,6 +87,89 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /*     EDIT USER FORM     */
 
+// Function to handle edit button click
+function handleEditButtonClick(button) {
+    // Get the user ID associated with the clicked button
+    const userId = button.getAttribute('data-user-id');
+
+    // Now 'userId' contains the ID of the user associated with the clicked button
+    console.log("User ID:", userId);
+
+    // You can perform any further actions with the user ID here
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const userIdInputs = document.getElementsByClassName('userIdInput');
+    const userIds = [];
+    for (let i = 0; i < userIdInputs.length; i++) {
+        userIds.push(userIdInputs[i].value);
+    }
+
+    const NEMPLEADO = document.getElementById('userIdInput').value;
+    const formFormat = 'editUserForm' + NEMPLEADO;
+    const nameFormat = 'NOMBRE' + NEMPLEADO;
+    const passFormat = 'PASS' + NEMPLEADO;
+
+    const form = document.getElementById('editUserForm');
+    const NOMBRE = document.getElementById(nameFormat);
+    const PASS = document.getElementById(passFormat);
+
+    form.addEventListener('submit', e => {
+        if (!validateInputs()) {
+            e.preventDefault(); // Prevent the form from being submitted
+        }
+    });
+
+    const setError = (element, message) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+
+        errorDisplay.innerText = message;
+        inputControl.classList.add('error');
+        inputControl.classList.remove('success');
+    }
+
+    const setSuccess = element => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+
+        errorDisplay.innerText = '';
+        inputControl.classList.add('success');
+        inputControl.classList.remove('error');
+    };
+
+    const isValidPASS = password => {
+        const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_.])[A-Za-z\d!@#$%^&*()_.]{8,}$/;
+        return re.test(String(password));
+    }
+
+    const validateInputs = () => {
+        let isValid = true;
+
+        const nombreValue = NOMBRE.value.trim();
+        const passValue = PASS.value.trim();
+
+        if (!nombreValue) {
+            setError(NOMBRE, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(NOMBRE);
+        }
+
+        if (!passValue) {
+            setError(PASS, 'Campo requerido');
+            isValid = false;
+        } else if (!isValidPASS(passValue)) {
+            setError(PASS, 'Ingresa una contraseña válida (8 caracteres, al menos 1 mayúscula, 1 minúscula, 1 número y 1 símbolo).');
+            isValid = false;
+        } else {
+            setSuccess(PASS);
+        }
+        return isValid;
+    };
+})
+
 
 ///////////////////////////////////////////////////////////////////
 
@@ -105,6 +188,14 @@ function validateNOMBRE(inputField) {
     inputField.value = inputField.value.replace(/[^a-zA-ZÁáÉéÍíÓóÚúÑñ\s]/g, '');
 
     // Limit the length of the input to 50 characters
+    if (inputField.value.length > 50) {
+        inputField.value = inputField.value.slice(0, 50);
+    }
+}
+
+function validateDESCRIPCION(inputField) {
+    inputField.value = inputField.value.replace(/[^a-zA-ZÁáÉéÍíÓóÚúÑñ0-9\s]/g, '');
+
     if (inputField.value.length > 50) {
         inputField.value = inputField.value.slice(0, 50);
     }

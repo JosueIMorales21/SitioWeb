@@ -145,7 +145,11 @@
                     <td th:text="${user.PERFIL}"></td>
                     <td th:text="${user.TIENDA} ? ${user.TIENDA} : '-'"></td>
                     <td>
-                        <button type="button" class="btn btn-primary" th:attr="data-target='#userModal'+${user.NEMPLEADO}" data-toggle="modal">EDITAR</button>
+                        <button type="button" class="btn btn-primary"
+                                th:attr="data-target='#userModal' + ${user.NEMPLEADO}"
+                                data-toggle="modal"
+                                onclick="handleEditButtonClick(${user.NEMPLEADO})">EDITAR
+                        </button>
                     </td>
                 </tr>
                 </tbody>
@@ -161,8 +165,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <input type="hidden" id="userNEMPLEADO" th:value="${user.NEMPLEADO}" />
                             <form th:action="@{/admin}" method="post" th:id="'editUserForm' + ${user.NEMPLEADO}">
+
                                 <input type="hidden"
                                        name="NEMPLEADO"
                                        th:value="${user.NEMPLEADO}"
@@ -256,7 +260,7 @@
                            class="form-control"
                            placeholder="Introduce una descripción"
                            th:field="*{DESCRIPCION}"
-                           oninput="validateNOMBRE(this)"
+                           oninput="validateDESCRIPCION(this)"
                     />
                     <div class="error"></div>
                 </div>
@@ -363,11 +367,11 @@
             <div class="search-container">
                 <div class="search-group">
                     <label for="leftSearchInput2">Buscar por descripción:</label>
-                    <label for="leftSearchInput2"></label><input oninput="validateNOMBRE(this)" type="text" id="leftSearchInput2" placeholder="Ingresa una descripción..." class="search-input large-input" maxlength="50">
+                    <label for="leftSearchInput2"></label><input oninput="validateDESCRIPCION(this)" type="text" id="leftSearchInput2" placeholder="Ingresa una descripción..." class="search-input large-input" maxlength="50">
                 </div>
                 <div class="search-group">
                     <label for="rightSearchInput2">Buscar por SKU:</label>
-                    <label for="rightSearchInput2"></label><input oninput="validateNEMPLEADO(this)" type="text" id="rightSearchInput2" placeholder="Ingresa número de empleado..." class="search-input small-input" maxlength="14">
+                    <label for="rightSearchInput2"></label><input oninput="validateSKU(this)" type="text" id="rightSearchInput2" placeholder="Ingresa número de empleado..." class="search-input small-input" maxlength="14">
                 </div>
             </div>
             <table id="userTable2">
