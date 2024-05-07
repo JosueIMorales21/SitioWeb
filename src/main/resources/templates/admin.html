@@ -145,12 +145,12 @@
                     <td th:text="${user.PERFIL}"></td>
                     <td th:text="${user.TIENDA} ? ${user.TIENDA} : '-'"></td>
                     <td>
-                        <button type="button" class="btn btn-primary" th:attr="data-target='#editModal'+${user.NEMPLEADO}" data-toggle="modal">EDITAR</button>
+                        <button type="button" class="btn btn-primary" th:attr="data-target='#userModal'+${user.NEMPLEADO}" data-toggle="modal">EDITAR</button>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <div th:each="user : ${users}" th:id="'editModal'+${user.NEMPLEADO}" class="modal fade" tabindex="-1"
+            <div th:each="user : ${users}" th:id="'userModal'+${user.NEMPLEADO}" class="modal fade" tabindex="-1"
                  role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -388,12 +388,12 @@
                     <td th:text="${product.CANTIDAD_TOTAL}"></td>
                     <td th:text="${product.CANTIDAD_DISPONIBLE}"></td>
                     <td>
-                        <button type="button" class="btn btn-primary" th:attr="data-target='#editModal'+${product.SKU}" data-toggle="modal">EDITAR</button>
+                        <button type="button" class="btn btn-primary" th:attr="data-target='#productModal'+${product.SKU}" data-toggle="modal">EDITAR</button>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <div th:each="product : ${products}" th:id="'editModal'+${product.SKU}" class="modal fade" tabindex="-1"
+            <div th:each="product : ${products}" th:id="'productModal'+${product.SKU}" class="modal fade" tabindex="-1"
                  role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
