@@ -1,3 +1,4 @@
+
 function openMenu(menuId) {
     var menu = document.getElementById(menuId);
     if (menu.style.display === "none" || menu.style.display === "") {
@@ -21,10 +22,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const NOMBRE = document.getElementById('NOMBRE');
     const PASS = document.getElementById('PASS');
 
+    const form2 = document.getElementById('formAdmin1');
+    const NEMPLEADO1 = document.getElementById('NEMPLEADO1')
+    const NOMBRE1 = document.getElementById('NOMBRE1');
+    const PASS1 = document.getElementById('PASS1');
+
     form.addEventListener('submit', e => {
         if (!validateInputs()) {
             e.preventDefault(); // Prevent the form from being submitted
         }
+    });
+
+    form2.addEventListener('submit', e => {
+       if (!validateInputs2()) {
+           e.preventDefault();
+       }
     });
 
     const setError = (element, message) => {
@@ -82,94 +94,144 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return isValid;
     };
-})
 
-
-/*     EDIT USER FORM     */
-
-// Function to handle edit button click
-function handleEditButtonClick(button) {
-    // Get the user ID associated with the clicked button
-    const userId = button.getAttribute('data-user-id');
-
-    // Now 'userId' contains the ID of the user associated with the clicked button
-    console.log("User ID:", userId);
-
-    // You can perform any further actions with the user ID here
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    const userIdInputs = document.getElementsByClassName('userIdInput');
-    const userIds = [];
-    for (let i = 0; i < userIdInputs.length; i++) {
-        userIds.push(userIdInputs[i].value);
-    }
-
-    const NEMPLEADO = document.getElementById('userIdInput').value;
-    const formFormat = 'editUserForm' + NEMPLEADO;
-    const nameFormat = 'NOMBRE' + NEMPLEADO;
-    const passFormat = 'PASS' + NEMPLEADO;
-
-    const form = document.getElementById('editUserForm');
-    const NOMBRE = document.getElementById(nameFormat);
-    const PASS = document.getElementById(passFormat);
-
-    form.addEventListener('submit', e => {
-        if (!validateInputs()) {
-            e.preventDefault(); // Prevent the form from being submitted
-        }
-    });
-
-    const setError = (element, message) => {
-        const inputControl = element.parentElement;
-        const errorDisplay = inputControl.querySelector('.error');
-
-        errorDisplay.innerText = message;
-        inputControl.classList.add('error');
-        inputControl.classList.remove('success');
-    }
-
-    const setSuccess = element => {
-        const inputControl = element.parentElement;
-        const errorDisplay = inputControl.querySelector('.error');
-
-        errorDisplay.innerText = '';
-        inputControl.classList.add('success');
-        inputControl.classList.remove('error');
-    };
-
-    const isValidPASS = password => {
-        const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_.])[A-Za-z\d!@#$%^&*()_.]{8,}$/;
-        return re.test(String(password));
-    }
-
-    const validateInputs = () => {
+    const validateInputs2 = () => {
         let isValid = true;
 
-        const nombreValue = NOMBRE.value.trim();
-        const passValue = PASS.value.trim();
+        const nempleado1Value = NEMPLEADO1.value.trim();
+        const nombre1Value = NOMBRE1.value.trim();
+        const pass1Value = PASS1.value.trim();
 
-        if (!nombreValue) {
-            setError(NOMBRE, 'Campo requerido');
-            isValid = false;
+        if (nempleado1Value != null) {
+            setSuccess(NEMPLEADO);
         } else {
-            setSuccess(NOMBRE);
+            setError(NEMPLEADO1, "NEMPLEADO no encontrado.")
+            isValid = false;
         }
 
-        if (!passValue) {
-            setError(PASS, 'Campo requerido');
-            isValid = false;
-        } else if (!isValidPASS(passValue)) {
-            setError(PASS, 'Ingresa una contraseña válida (8 caracteres, al menos 1 mayúscula, 1 minúscula, 1 número y 1 símbolo).');
+        if (!nombre1Value) {
+            setError(NOMBRE1, 'Campo requerido');
             isValid = false;
         } else {
-            setSuccess(PASS);
+            setSuccess(NOMBRE1);
+        }
+
+        if (!pass1Value) {
+            setError(PASS1, 'Campo requerido');
+            isValid = false;
+        } else if (!isValidPASS(pass1Value)) {
+            setError(PASS1, 'Ingresa una contraseña válida (8 caracteres, al menos 1 mayúscula, 1 minúscula, 1 número y 1 símbolo).');
+            isValid = false;
+        } else {
+            setSuccess(PASS1);
         }
         return isValid;
     };
 })
 
+
+/*     EDIT USER FORM     */
+
+
+// Check if globalUserId, globalUserForm, and globalEditButton are undefined
+// if (typeof globalUserId === 'undefined' && typeof globalUserForm === 'undefined' && typeof globalEditButton === 'undefined') {
+//     // Declare the globalUserId variable only if it's not already defined
+//     var globalUserId;
+//     var globalUserForm;
+//     var globalEditButton;
+// }
+//
+// // Now you can use globalUserId safely
+// function handleEditButtonClick(button, updateFormElements, validateInputs) {
+//     // Get the value of data-target attribute
+//     const dataTarget = button.getAttribute('data-target');
+//     const userId = dataTarget.replace('#userModal', '');
+//     globalUserId = userId;
+//     globalUserForm = 'editUserForm' + globalUserId;
+//     globalEditButton = 'updateUserButton' + globalUserId;
+//
+//     console.log("NEMPLEADO:", globalUserId);
+//     console.log("FORM:", globalUserForm);
+//     console.log("BUTTON: ", globalEditButton);
+//
+//     // Get the form element
+//     const formEdit = document.getElementById(globalUserForm);
+//
+//     // Add event listener for form submission
+//     formEdit.addEventListener('submit', e => {
+//         const { NOMBRE, PASS } = updateFormElements();
+//         if (!validateInputs(NOMBRE, PASS)) {
+//             e.preventDefault(); // Prevent the form from being submitted
+//         }
+//     });
+// }
+//
+// document.addEventListener('click', () => {
+//     const setError = (element, message) => {
+//         const inputControl = element.parentElement;
+//         const errorDisplay = inputControl.querySelector('.error');
+//
+//         errorDisplay.innerText = message;
+//         inputControl.classList.add('error');
+//         inputControl.classList.remove('success');
+//     };
+//
+//     const setSuccess = element => {
+//         const inputControl = element.parentElement;
+//         const errorDisplay = inputControl.querySelector('.error');
+//
+//         errorDisplay.innerText = '';
+//         inputControl.classList.add('success');
+//         inputControl.classList.remove('error');
+//     };
+//
+//     const isValidPASS = password => {
+//         const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_.])[A-Za-z\d!@#$%^&*()_.]{8,}$/;
+//         return re.test(String(password));
+//     };
+//
+//     const validateInputs = (NOMBRE, PASS) => {
+//         let isValid = true;
+//
+//         console.log("NOMBRE:", NOMBRE.value.trim());
+//         console.log("PASS:", PASS.value.trim());
+//
+//         if (!NOMBRE.value.trim()) {
+//             setError(NOMBRE, 'Campo requerido');
+//             isValid = false;
+//         } else {
+//             setSuccess(NOMBRE);
+//         }
+//
+//         if (!PASS.value.trim()) {
+//             setError(PASS, 'Campo requerido');
+//             isValid = false;
+//         } else if (!isValidPASS(PASS.value.trim())) {
+//             setError(PASS, 'Ingresa una contraseña válida (8 caracteres, al menos 1 mayúscula, 1 minúscula, 1 número y 1 símbolo).');
+//             isValid = false;
+//         } else {
+//             setSuccess(PASS);
+//         }
+//
+//         return isValid;
+//     };
+//
+//     const updateFormElements = () => {
+//         const formattedName = 'NOMBRE' + globalUserId;
+//         const formattedPass = 'PASS' + globalUserId;
+//
+//         const NOMBRE = document.getElementById(formattedName);
+//         const PASS = document.getElementById(formattedPass);
+//
+//         return { NOMBRE, PASS };
+//     };
+//
+//     const editButton = document.getElementById('updateUserButton'); // Replace 'updateUserButton' with the ID of your button
+//     editButton.addEventListener('click', () => {
+//         // Handle edit button click
+//         handleEditButtonClick(editButton, updateFormElements, validateInputs);
+//     });
+// });
 
 ///////////////////////////////////////////////////////////////////
 
