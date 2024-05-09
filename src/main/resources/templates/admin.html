@@ -161,7 +161,8 @@
                     <td>
                         <button type="button" class="btn btn-primary"
                                 th:attr="data-target='#userModal' + ${user.NEMPLEADO}"
-                                onclick="autoCompleteEditUser()"
+                                onclick="autoCompleteEditUser(this)"
+                                th:value="${user.NEMPLEADO}"
                                 data-toggle="modal">EDITAR
                         </button>
                     </td>
@@ -187,17 +188,17 @@
                             <form style="align-items: center" th:id="'userEditForm' + ${user.NEMPLEADO}" th:action="@{/admin}" method="post" th:object="${user}">
 
                                 <!-- CONTAINERS TO STORE THE CURRENT USER'S INFO -->
-                                <div style="display: none;" id="NEMPLEADO_VALUE" th:value="${user.NEMPLEADO}"></div>
-                                <div style="display: none;" id="NOMBRE_VALUE" th:value="${user.NOMBRE}"></div>
-                                <div style="display: none;" id="PASS_VALUE" th:value="${user.PASS}"></div>
-                                <div style="display: none;" id="TIENDA_VALUE" th:value="${user.TIENDA}"></div>
+                                <div style="display: none;" th:id="'NEMPLEADO_VALUE' + ${user.NEMPLEADO}" th:value="${user.NEMPLEADO}"></div>
+                                <div style="display: none;" th:id="'NOMBRE_VALUE' + ${user.NEMPLEADO}" th:value="${user.NOMBRE}"></div>
+                                <div style="display: none;" th:id="'PASS_VALUE' + ${user.NEMPLEADO}" th:value="${user.PASS}"></div>
+                                <div style="display: none;" th:id="'TIENDA_VALUE' + ${user.NEMPLEADO}" th:value="${user.TIENDA}"></div>
 
                                 <div class="userRegisterGroup">
                                     <!-- "readonly" ADDED SO THE USER CAN'T MODIFY THAT FIELD -->
-                                    <label for="NEMPLEADO1" class="control-label">Número de Empleado:</label>
+                                    <label th:for="'NEMPLEADO1' + ${user.NEMPLEADO}" class="control-label">Número de Empleado:</label>
                                     <input type="text"
-                                           id="NEMPLEADO1"
-                                           name="NEMPLEADO1"
+                                           th:id="'NEMPLEADO1' + ${user.NEMPLEADO}"
+                                           th:name="'NEMPLEADO1' + ${user.NEMPLEADO}"
                                            class="form-control"
                                            placeholder="Introduce tu número de empleado"
                                            oninput="validateNEMPLEADO(this)"
@@ -208,10 +209,10 @@
                                 </div>
 
                                 <div class="userRegisterGroup">
-                                    <label for="NOMBRE1" class="control-label">Nombre:</label>
+                                    <label th:for="'NOMBRE1' + ${user.NEMPLEADO}" class="control-label">Nombre:</label>
                                     <input type="text"
-                                           id="NOMBRE1"
-                                           name="NOMBRE1"
+                                           th:id="'NOMBRE1' + ${user.NEMPLEADO}"
+                                           th:name="'NOMBRE1' + ${user.NEMPLEADO}"
                                            class="form-control"
                                            placeholder="Introduce tu nombre"
                                            oninput="validateNOMBRE(this)"
@@ -221,10 +222,10 @@
                                 </div>
 
                                 <div class="userRegisterGroup">
-                                    <label for="PASS1" class="control-label">Contraseña:</label>
+                                    <label th:for="'PASS1' + ${user.NEMPLEADO}" class="control-label">Contraseña:</label>
                                     <input type="password"
-                                           id="PASS1"
-                                           name="PASS1"
+                                           th:id="'PASS1' + ${user.NEMPLEADO}"
+                                           th:name="'PASS1' + ${user.NEMPLEADO}"
                                            class="form-control"
                                            placeholder="Introduce una contraseña"
                                            oninput="validatePASS(this)"
@@ -234,18 +235,20 @@
                                 </div>
 
                                 <div class="userRegisterGroup">
-                                    <label for="PERFIL1" class="control-label">Perfil:</label>
-                                    <select id="PERFIL1" name="PERFIL1" class="form-control" th:field="*{PERFIL}">
-                                        <option th:value="15">Admin</option>
-                                        <option th:value="10">User</option>
-                                    </select>
+                                    <label th:for="'PERFIL1' + ${user.NEMPLEADO}" class="control-label">Perfil:</label>
+                                    <label>
+                                        <select th:id="'PERFIL1' + ${user.NEMPLEADO}" th:name="'PERFIL1' + ${user.NEMPLEADO}" class="form-control" th:field="*{PERFIL}">
+                                            <option th:value="15">Admin</option>
+                                            <option th:value="10">User</option>
+                                        </select>
+                                    </label>
                                 </div>
 
                                 <div class="userRegisterGroup">
-                                    <label for="TIENDA1" class="control-label">Tienda:</label>
+                                    <label th:for="'TIENDA1' + ${user.NEMPLEADO}" class="control-label">Tienda:</label>
                                     <input type="text"
-                                           id="TIENDA1"
-                                           name="TIENDA1"
+                                           th:id="'TIENDA1' + ${user.NEMPLEADO}"
+                                           th:name="'TIENDA1' + ${user.NEMPLEADO}"
                                            class="form-control"
                                            placeholder="Introduce tu tienda"
                                            oninput="validateTIENDA(this)"

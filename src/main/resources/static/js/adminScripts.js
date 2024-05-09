@@ -368,23 +368,27 @@ function validateDEPA(inputField) {
 
 /*                     AUTOCOMPLETE EDIT FORMS (CREATE AND UPDATE USER)                     */
 
-function autoCompleteEditUser() {
-    const nempleadoInput = document.getElementById('NEMPLEADO1');
-    const nombreInput = document.getElementById('NOMBRE1');
-    const passInput = document.getElementById('PASS1');
-    const tiendaInput = document.getElementById('TIENDA1');
+function autoCompleteEditUser(button) {
+    const nemValue = button.value;
 
-    const nempleadoValue = document.getElementById('NEMPLEADO_VALUE').getAttribute('value');
-    const nombreValue = document.getElementById('NOMBRE_VALUE').getAttribute('value');
-    const passValue = document.getElementById('PASS_VALUE').getAttribute('value');
-    const tiendaValue = document.getElementById('TIENDA_VALUE').getAttribute('value');
+    console.log(nemValue)
+
+    const nempleadoInput = document.getElementById('NEMPLEADO1' + nemValue);
+    const nombreInput = document.getElementById('NOMBRE1' + nemValue);
+    const passInput = document.getElementById('PASS1' + nemValue);
+    const tiendaInput = document.getElementById('TIENDA1' + nemValue);
+
+    const nempleadoValue = document.getElementById('NEMPLEADO_VALUE' + nemValue).getAttribute('value');
+    const nombreValue = document.getElementById('NOMBRE_VALUE' + nemValue).getAttribute('value');
+    const passValue = document.getElementById('PASS_VALUE' + nemValue).getAttribute('value');
+    const tiendaValue = document.getElementById('TIENDA_VALUE' + nemValue).getAttribute('value');
 
     nempleadoInput.value = nempleadoValue;
     nombreInput.value = nombreValue;
     passInput.value = passValue;
     tiendaInput.value = tiendaValue;
 
-    const form = document.getElementById('userEditForm' + nempleadoValue);
+    const form = document.getElementById('userEditForm' + nemValue);
 
     form.addEventListener('submit', e => {
         if (!validateInputs()) {
