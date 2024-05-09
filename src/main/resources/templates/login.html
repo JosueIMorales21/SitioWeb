@@ -13,17 +13,20 @@
 <body>
 <script th:src="@{/js/scripts.js}"></script>
 <header>
+    <!-- IMAGES -->
     <div class="logo-container">
         <img class="logo1" th:src="@{/images/el-palacio-de-hierro.svg}" alt="Logo 1">
         <img class="logo2" th:src="@{/images/usuario.png}" alt="Logo 2">
     </div>
     <h1 class="titulo">Inicio de Sesión</h1>
 </header>
+<!-- WRONG USER OR PASSWORD ALERT -->
 <div style="text-align: center;">
     <div th:if="${param.error}">
         <div class="alert alert-danger">Usuario y/o contraseña incorrectos.</div>
     </div>
 </div>
+<!-- SESIÓN CERRADA CORRECTAMENTE ALERT -->
 <div style="text-align: center;">
     <div th:if="${param.logout}">
         <div class="alert alert-success">Sesión cerrada correctamente.</div>
@@ -31,6 +34,7 @@
 </div>
 <div class="card">
     <div class="card-body">
+        <!-- FORM FOR LOGIN -->
         <form
                 method="post"
                 th:action="@{/login}"
@@ -38,6 +42,8 @@
                 role="form"
                 onsubmit="return validateForm()"
         >
+
+            <!-- NEMPLEADO FIELD -->
             <div class="mb-3">
                 <label for="username" class="control-label">No. de Empleado *</label>
                 <input type="text"
@@ -47,9 +53,12 @@
                        placeholder="Introduce tu número de empleado"
                        oninput="validateUser(this)"
                 />
+                <!-- ALERT IN CASE THE FIELD IS EMPTY -->
                 <small id="usernameError" class="text-danger d-none"
                 >Por favor, introduce tu número de empleado</small>
             </div>
+
+            <!-- PASSWORD FIELD -->
             <div class="mb-3">
                 <label for="password" class="control-label">Contraseña *</label>
                 <div class="input-group">
@@ -64,10 +73,13 @@
                         Mostrar
                     </button>
                 </div>
+                <!-- ALERT IN CASE THE FIELD IS EMPTY -->
                 <small id="passwordError" class="text-danger d-none"
                 >Por favor, introduce tu contraseña</small>
             </div>
 
+
+            <!-- LOGIN BUTTON -->
             <div style="text-align: center;">
                 <div class="mb-3">
                     <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
