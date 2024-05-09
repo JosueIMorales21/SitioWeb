@@ -184,7 +184,7 @@
                         </div>
                         <div class="modal-body">
                             <!-- EDIT USER FORM, CONTAINS AN OBJECT FOR USER TO EXTRACT THE DESIRED VALUE -->
-                            <form style="align-items: center" id="formAdmin1" th:action="@{/admin}" method="post" th:object="${user}">
+                            <form style="align-items: center" th:id="'userEditForm' + ${user.NEMPLEADO}" th:action="@{/admin}" method="post" th:object="${user}">
 
                                 <!-- CONTAINERS TO STORE THE CURRENT USER'S INFO -->
                                 <div style="display: none;" id="NEMPLEADO_VALUE" th:value="${user.NEMPLEADO}"></div>
@@ -193,6 +193,7 @@
                                 <div style="display: none;" id="TIENDA_VALUE" th:value="${user.TIENDA}"></div>
 
                                 <div class="userRegisterGroup">
+                                    <!-- "readonly" ADDED SO THE USER CAN'T MODIFY THAT FIELD -->
                                     <label for="NEMPLEADO1" class="control-label">Número de Empleado:</label>
                                     <input type="text"
                                            id="NEMPLEADO1"

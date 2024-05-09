@@ -28,21 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const NOMBRE = document.getElementById('NOMBRE');
     const PASS = document.getElementById('PASS');
 
-    const form2 = document.getElementById('formAdmin1');
-    const NEMPLEADO1 = document.getElementById('NEMPLEADO1')
-    const NOMBRE1 = document.getElementById('NOMBRE1');
-    const PASS1 = document.getElementById('PASS1');
-
     form.addEventListener('submit', e => {
         if (!validateInputs()) {
             e.preventDefault(); // Prevent the form from being submitted
         }
-    });
-
-    form2.addEventListener('submit', e => {
-       if (!validateInputs2()) {
-           e.preventDefault();
-       }
     });
 
     const setError = (element, message) => {
@@ -97,39 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
             isValid = false;
         } else {
             setSuccess(PASS);
-        }
-        return isValid;
-    };
-
-    const validateInputs2 = () => {
-        let isValid = true;
-
-        const nempleado1Value = NEMPLEADO1.value.trim();
-        const nombre1Value = NOMBRE1.value.trim();
-        const pass1Value = PASS1.value.trim();
-
-        if (nempleado1Value != null) {
-            setSuccess(NEMPLEADO);
-        } else {
-            setError(NEMPLEADO1, "NEMPLEADO no encontrado.")
-            isValid = false;
-        }
-
-        if (!nombre1Value) {
-            setError(NOMBRE1, 'Campo requerido');
-            isValid = false;
-        } else {
-            setSuccess(NOMBRE1);
-        }
-
-        if (!pass1Value) {
-            setError(PASS1, 'Campo requerido');
-            isValid = false;
-        } else if (!isValidPASS(pass1Value)) {
-            setError(PASS1, 'Ingresa una contraseña válida (8 caracteres, al menos 1 mayúscula, 1 minúscula, 1 número y 1 símbolo).');
-            isValid = false;
-        } else {
-            setSuccess(PASS1);
         }
         return isValid;
     };
@@ -427,5 +383,69 @@ function autoCompleteEditUser() {
     nombreInput.value = nombreValue;
     passInput.value = passValue;
     tiendaInput.value = tiendaValue;
+
+    const form = document.getElementById('userEditForm' + nempleadoValue);
+
+    form.addEventListener('submit', e => {
+        if (!validateInputs()) {
+            e.preventDefault();
+        }
+    });
+
+    const setError = (element, message) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+
+        errorDisplay.innerText = message;
+        inputControl.classList.add('error');
+        inputControl.classList.remove('success');
+    }
+
+    const setSuccess = element => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+
+        errorDisplay.innerText = '';
+        inputControl.classList.add('success');
+        inputControl.classList.remove('error');
+    };
+
+    const isValidPASS = password => {
+        const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_.])[A-Za-z\d!@#$%^&*()_.]{8,}$/;
+        return re.test(String(password));
+    }
+
+    const validateInputs = () => {
+        let isValid = true;
+
+        const nempleado1Value = nempleadoInput.value.trim();
+        const nombre1Value = nombreInput.value.trim();
+        const pass1Value = passInput.value.trim();
+
+        if (nempleado1Value != null) {
+            setSuccess(nempleadoInput);
+        } else {
+            setError(nempleadoInput, "NEMPLEADO no encontrado.")
+            isValid = false;
+        }
+
+        if (!nombre1Value) {
+            setError(nombreInput, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(nombreInput);
+        }
+
+        if (!pass1Value) {
+            setError(passInput, 'Campo requerido');
+            isValid = false;
+        } else if (!isValidPASS(pass1Value)) {
+            setError(passInput, 'Ingresa una contraseña válida (8 caracteres, al menos 1 mayúscula, 1 minúscula, 1 número y 1 símbolo).');
+            isValid = false;
+        } else {
+            setSuccess(passInput);
+        }
+        return isValid;
+    };
 
 }
