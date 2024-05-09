@@ -24,16 +24,18 @@
     </div>
 </header>
 
-<!-- Display success message -->
+<!-- SUCCESS MESSAGE -->
 <div style="text-align: center;" th:action="@{/admin}">
     <div th:if="${success}">
         <div class="alert alert-success" th:text="${message}"></div>
     </div>
+    <!-- ERROR MESSAGE -->
     <div th:if="${error}">
         <div class="alert alert-danger" th:text="${errorMessage}"></div>
     </div>
 </div>
 
+<!-- SIDE BAR CONTAINING OPTIONS (YOU CAN ADD MORE IF NEEDED)-->
 <div class="mainContainer">
     <div class="sidebar">
         <button class="sidebar-btn" onclick="openMenu('option1')">AGREGAR USUARIO</button>
@@ -42,13 +44,14 @@
         <button class="sidebar-btn" onclick="openMenu('option4')">EDITAR PRODUCTO</button>
     </div>
 
-    <!-- Content Area -->
+    <!-- AGREGAR USUARIO OPTION -->
     <div class="content">
         <div id="option1" class="menu">
             <h1>Registro de usuario</h1>
             <br>
             <form style="align-items: center" id="formAdmin" th:action="@{/admin}" method="post" th:object="${user}">
                 <div class="userRegisterGroup">
+                    <!-- LABEL AND INPUT TO COMPLETE -->
                     <label for="NEMPLEADO" class="control-label">Número de Empleado:</label>
                     <input type="text"
                            id="NEMPLEADO"
@@ -58,6 +61,7 @@
                            oninput="validateNEMPLEADO(this)"
                            th:field="*{NEMPLEADO}"
                     />
+                    <!-- DIV FOR ERROR IN CASE OF BEING THROWN -->
                     <div class="error"></div>
                 </div>
 
@@ -89,6 +93,7 @@
 
                 <div class="userRegisterGroup">
                     <label for="PERFIL" class="control-label">Perfil:</label>
+                    <!-- SELECT FIELDS FOR USER OR ADMIN VALUE -->
                     <select id="PERFIL" name="PERFIL" class="form-control" th:field="*{PERFIL}">
                         <option th:value="15">Admin</option>
                         <option th:value="10">User</option>
@@ -108,24 +113,32 @@
                     <div class="error"></div>
                 </div>
                 <br>
+                <!-- THIS BUTTON HAS "REGISTER" AS ACTION VALUE SO IT CAN WORK AS EXPECTED -->
                 <div style="align-items: center">
                     <button type="submit" class="btn btn-primary" name="action" value="register">Registrar</button>
                 </div>
             </form>
         </div>
+
+        <!-- EDITAR USUARIO OPTION -->
         <div id="option2" class="menu">
             <h1>Lista de usuarios</h1>
             <br>
+            <!-- SEARCH BAR -->
             <div class="search-container">
                 <div class="search-group">
+                    <!-- SEARCH BY NAME -->
                     <label for="leftSearchInput">Buscar por nombre:</label>
                     <input oninput="validateNOMBRE(this)" type="text" id="leftSearchInput" placeholder="Ingresa un nombre..." class="search-input large-input" maxlength="50">
                 </div>
                 <div class="search-group">
+                    <!-- SEARCH BY NEMPLEADO -->
                     <label for="rightSearchInput">Buscar por número de empleado:</label>
                     <input oninput="validateNEMPLEADO(this)" type="text" id="rightSearchInput" placeholder="Ingresa número de empleado..." class="search-input small-input" maxlength="10">
                 </div>
             </div>
+
+            <!-- TABLE FOR VISUALIZE USERS, THIS IS UPDATED DYNAMICALLY -->
             <table id="userTable">
                 <thead>
                 <tr>
@@ -133,15 +146,18 @@
                     <th>NOMBRE</th>
                     <th>PERFIL</th>
                     <th>TIENDA</th>
-                    <th></th> <!-- New column for Edit button -->
+                    <th></th> <!-- EMPTY COLUMN FOR EDIT BUTTON -->
                 </tr>
                 </thead>
                 <tbody>
+                <!-- TABLE BODY CONTAINING EVERY USER REGISTERED IN THE DB -->
                 <tr th:each="user : ${users}">
                     <td th:text="${user.NEMPLEADO}"></td>
                     <td th:text="${user.NOMBRE}"></td>
                     <td th:text="${user.PERFIL}"></td>
                     <td th:text="${user.TIENDA} ? ${user.TIENDA} : '-'"></td>
+
+                    <!-- EDIT BUTTON, THIS WILL OPEN A NEW EDIT FIELD IN THE SAME WINDOW -->
                     <td>
                         <button type="button" class="btn btn-primary"
                                 th:attr="data-target='#userModal' + ${user.NEMPLEADO}"
@@ -151,17 +167,22 @@
                 </tr>
                 </tbody>
             </table>
+
+            <!-- EDIT USER CONFIG, ITERATES ON EVERY USER TO GET EXPECTED VALUE -->
             <div th:each="user : ${users}" th:id="'userModal'+${user.NEMPLEADO}" class="modal fade" tabindex="-1"
                  role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
+                            <!-- HEADER FOR EDITAR USUARIO -->
                             <h5 class="modal-title">Editar usuario</h5>
+                            <!-- CLOSE BUTTON -->
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
+                            <!-- EDIT USER FORM, CONTAINS AN OBJECT FOR USER TO EXTRACT THE DESIRED VALUE -->
                             <form style="align-items: center" id="formAdmin1" th:action="@{/admin}" method="post" th:object="${user}">
                                 <div class="userRegisterGroup">
                                     <label for="NEMPLEADO1" class="control-label">Número de Empleado:</label>
@@ -224,7 +245,9 @@
                                 </div>
                                 <br>
                                 <div style="align-items: center">
+                                    <!-- ACEPTAR BUTTON WITH "UPDATE" AS ACTION VALUE NEEDED SO IT WORKS AS EXPECTED -->
                                     <button type="submit" class="btn btn-primary" name="action" value="update">ACEPTAR</button>
+                                    <!-- CLOSE FORM BUTTON WORKS THE SAME AS THE PREVIOUS ONE -->
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
                                 </div>
                             </form>
@@ -233,6 +256,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- AGREGAR PRODUCTOS OPTION -->
         <div id="option3" class="menu">
             <h1>Registro de productos</h1>
             <br>
@@ -354,24 +379,34 @@
                     <div class="error"></div>
                 </div>
                 <br>
+
+                <!-- REGISTRAR BUTTON WITH "UPDATE" AS ACTION VALUE NEEDED SO IT WORKS AS EXPECTED -->
                 <div style="align-items: center">
                     <button type="submit" class="btn btn-primary" name="action" value="registerProd">Registrar</button>
                 </div>
             </form>
         </div>
+
+        <!-- EDITAR PRODUCTOS OPTION -->
         <div id="option4" class="menu">
             <h1>Lista de productos</h1>
             <br>
+
+            <!-- SEARCH FIELDS, THEY WORK EXACTLY THE SAME AS THE PREVIOUS ONES -->
             <div class="search-container">
                 <div class="search-group">
+                    <!-- SEARCH BY DESCRIPTION -->
                     <label for="leftSearchInput2">Buscar por descripción:</label>
                     <label for="leftSearchInput2"></label><input oninput="validateDESCRIPCION(this)" type="text" id="leftSearchInput2" placeholder="Ingresa una descripción..." class="search-input large-input" maxlength="50">
                 </div>
                 <div class="search-group">
+                    <!-- SEARCH BY SKU OR PRODUCT NUMBER -->
                     <label for="rightSearchInput2">Buscar por SKU:</label>
                     <label for="rightSearchInput2"></label><input oninput="validateSKU(this)" type="text" id="rightSearchInput2" placeholder="Ingresa número de empleado..." class="search-input small-input" maxlength="14">
                 </div>
             </div>
+
+            <!-- PRODUCT TABLE TO VISUALIZE THE PRODUCTS LIST -->
             <table id="userTable2">
                 <thead>
                 <tr>
@@ -384,7 +419,7 @@
                     <th>DESCUENTO</th>
                     <th>CANTIDAD TOTAL</th>
                     <th>CANTIDAD DISPONIBLE</th>
-                    <th></th> <!-- New column for Edit button -->
+                    <th></th> <!--NEW EMPTY COLUMN FOR EDIT BUTTON -->
                 </tr>
                 </thead>
                 <tbody>
@@ -399,22 +434,27 @@
                     <td th:text="${product.CANTIDAD_TOTAL}"></td>
                     <td th:text="${product.CANTIDAD_DISPONIBLE}"></td>
                     <td>
+                        <!-- EDIT BUTTON -->
                         <button type="button" class="btn btn-primary" th:attr="data-target='#productModal'+${product.SKU}" data-toggle="modal">EDITAR</button>
                     </td>
                 </tr>
                 </tbody>
             </table>
+
+            <!-- EDIT PRODUCT DIV, WORKS THE SAME AS EDITAR USUARIO -->
             <div th:each="product : ${products}" th:id="'productModal'+${product.SKU}" class="modal fade" tabindex="-1"
                  role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Editar producto</h5>
+                            <!-- CLOSE FORM BUTTON -->
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
+                            <!-- EDIT PRODUCT FORM -->
                             <form th:action="@{/admin}" method="post">
                                 <div class="form-group">
                                     <label>SKU:</label>
@@ -516,8 +556,10 @@
                                 </div>
 
                                 <div class="modal-footer">
+                                    <!-- ACEPTAR BUTTON WITH "updateProduct" AS ACTION VALUE NEEDED SO IT WORKS AS EXPECTED -->
                                     <button type="submit" name="action" value="updateProduct" class="btn btn-primary">ACEPTAR
                                     </button>
+                                    <!-- CLOSE FORM BUTTON, WORKS THE SAME AS THE PREVIOUS ONE -->
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
                                 </div>
                             </form>
@@ -529,7 +571,8 @@
     </div>
 </div>
 
-<script th:src="@{/js/adminScripts.js}"></script>
+
+<!-- LIBRARIES AND SCRIPTS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

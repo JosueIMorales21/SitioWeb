@@ -1,3 +1,6 @@
+//////////////////////////////////////////////////////////////////////////////////////////
+
+/*                            SIDE MENU CONTROLLER                            */
 
 function openMenu(menuId) {
     var menu = document.getElementById(menuId);
@@ -15,7 +18,10 @@ function openMenu(menuId) {
         menu.style.display = "none";
     }
 }
-/////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+/*                            USER FORMS (CREATE AND UPDATE)                            */
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('formAdmin');
     const NEMPLEADO = document.getElementById('NEMPLEADO');
@@ -129,111 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 })
 
+//////////////////////////////////////////////////////////////////////////////////////////
 
-/*     EDIT USER FORM     */
-
-
-// Check if globalUserId, globalUserForm, and globalEditButton are undefined
-// if (typeof globalUserId === 'undefined' && typeof globalUserForm === 'undefined' && typeof globalEditButton === 'undefined') {
-//     // Declare the globalUserId variable only if it's not already defined
-//     var globalUserId;
-//     var globalUserForm;
-//     var globalEditButton;
-// }
-//
-// // Now you can use globalUserId safely
-// function handleEditButtonClick(button, updateFormElements, validateInputs) {
-//     // Get the value of data-target attribute
-//     const dataTarget = button.getAttribute('data-target');
-//     const userId = dataTarget.replace('#userModal', '');
-//     globalUserId = userId;
-//     globalUserForm = 'editUserForm' + globalUserId;
-//     globalEditButton = 'updateUserButton' + globalUserId;
-//
-//     console.log("NEMPLEADO:", globalUserId);
-//     console.log("FORM:", globalUserForm);
-//     console.log("BUTTON: ", globalEditButton);
-//
-//     // Get the form element
-//     const formEdit = document.getElementById(globalUserForm);
-//
-//     // Add event listener for form submission
-//     formEdit.addEventListener('submit', e => {
-//         const { NOMBRE, PASS } = updateFormElements();
-//         if (!validateInputs(NOMBRE, PASS)) {
-//             e.preventDefault(); // Prevent the form from being submitted
-//         }
-//     });
-// }
-//
-// document.addEventListener('click', () => {
-//     const setError = (element, message) => {
-//         const inputControl = element.parentElement;
-//         const errorDisplay = inputControl.querySelector('.error');
-//
-//         errorDisplay.innerText = message;
-//         inputControl.classList.add('error');
-//         inputControl.classList.remove('success');
-//     };
-//
-//     const setSuccess = element => {
-//         const inputControl = element.parentElement;
-//         const errorDisplay = inputControl.querySelector('.error');
-//
-//         errorDisplay.innerText = '';
-//         inputControl.classList.add('success');
-//         inputControl.classList.remove('error');
-//     };
-//
-//     const isValidPASS = password => {
-//         const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_.])[A-Za-z\d!@#$%^&*()_.]{8,}$/;
-//         return re.test(String(password));
-//     };
-//
-//     const validateInputs = (NOMBRE, PASS) => {
-//         let isValid = true;
-//
-//         console.log("NOMBRE:", NOMBRE.value.trim());
-//         console.log("PASS:", PASS.value.trim());
-//
-//         if (!NOMBRE.value.trim()) {
-//             setError(NOMBRE, 'Campo requerido');
-//             isValid = false;
-//         } else {
-//             setSuccess(NOMBRE);
-//         }
-//
-//         if (!PASS.value.trim()) {
-//             setError(PASS, 'Campo requerido');
-//             isValid = false;
-//         } else if (!isValidPASS(PASS.value.trim())) {
-//             setError(PASS, 'Ingresa una contraseña válida (8 caracteres, al menos 1 mayúscula, 1 minúscula, 1 número y 1 símbolo).');
-//             isValid = false;
-//         } else {
-//             setSuccess(PASS);
-//         }
-//
-//         return isValid;
-//     };
-//
-//     const updateFormElements = () => {
-//         const formattedName = 'NOMBRE' + globalUserId;
-//         const formattedPass = 'PASS' + globalUserId;
-//
-//         const NOMBRE = document.getElementById(formattedName);
-//         const PASS = document.getElementById(formattedPass);
-//
-//         return { NOMBRE, PASS };
-//     };
-//
-//     const editButton = document.getElementById('updateUserButton'); // Replace 'updateUserButton' with the ID of your button
-//     editButton.addEventListener('click', () => {
-//         // Handle edit button click
-//         handleEditButtonClick(editButton, updateFormElements, validateInputs);
-//     });
-// });
-
-///////////////////////////////////////////////////////////////////
+/*                            VALIDATE TEXT FORMAT FIELDS                            */
 
 function validateNEMPLEADO(inputField) {
     // Remove any non-numeric characters
@@ -290,8 +194,9 @@ function validateTIENDA(inputField) {
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////
-/*   SEARCH ENGINE   */
+//////////////////////////////////////////////////////////////////////////////////////////
+
+/*                            SEARCH BARS CONFIGURATION                            */
 
 document.addEventListener('DOMContentLoaded', function() {
     // Get references to the search inputs and table body
@@ -299,7 +204,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const rightSearchInput = document.getElementById('rightSearchInput');
     const tbody = document.querySelector('#userTable tbody');
 
-    // Clone the original tbody
     const originalTbody = tbody.cloneNode(true);
 
     // Event listeners for the search inputs
@@ -369,7 +273,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+/*                            PRODUCT FORMS (CREATE AND UPDATE)                            */
 
 document.addEventListener('DOMContentLoaded', () => {
     const form2 = document.getElementById('formProduct');
@@ -499,5 +405,18 @@ function validateDEPA(inputField) {
     inputField.value = inputField.value.replace(/[^0-9]/g, '');
     if (inputField.value.length > 2) {
         inputField.value = inputField.value.slice(0, 2);
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+/*                     AUTOCOMPLETE EDIT FORMS (CREATE AND UPDATE USER)                     */
+
+function autocompleteLabelFor(input) {
+    var inputId = input.id;
+    var labelFor = "label" + inputId.charAt(0).toUpperCase() + inputId.slice(1);
+    var label = document.getElementById(labelFor);
+    if (label) {
+        label.setAttribute("for", inputId);
     }
 }

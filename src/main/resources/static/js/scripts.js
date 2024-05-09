@@ -1,3 +1,12 @@
+//////////////////////////////////////////////////////////////////////////////////////////
+
+/*                            LOGIN CONFIGURATION                            */
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+/*                     TOOGLE PASSWORD FUNCTION (SHOW HIDE PASSWORD)                     */
+
 document.addEventListener("DOMContentLoaded", function() {
     const togglePassword = document.getElementById("togglePassword");
     const passwordInput = document.getElementById("password");
@@ -12,6 +21,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+/*                             USER CREDENTIALS VALIDATION                              */
 
 function validateForm() {
     const username = document.getElementById('username').value;
@@ -35,18 +48,27 @@ function validateForm() {
     return true;
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////
+
+/*                                VALIDATE FIELDS FORMAT                                */
+
+
+
+/*                            USER NUMBER VALIDATION                           */
 function validateUser(inputField) {
-    // Remove any non-numeric characters
+
+    // USER CAN ONLY ENTER NUMBERS FROM 0 TO 9
     inputField.value = inputField.value.replace(/[^0-9]/g, '');
 
-    // Limit the length of the input to 10 characters
+    // LIMIT THE FIELD LENGTH UP TO 10 CHARACTERS
     if (inputField.value.length > 10) {
         inputField.value = inputField.value.slice(0, 10);
     }
 }
 
+/*                              PASSWORD VALIDATION                             */
 function validatePassword(inputField) {
-    // Limit the length of the input to 8 characters
+    // LIMIT THE FIELD LENGTH UP TO 8 CHARACTERS
     if (inputField.value.length > 8) {
         inputField.value = inputField.value.slice(0, 8);
     }
