@@ -412,11 +412,20 @@ function validateDEPA(inputField) {
 
 /*                     AUTOCOMPLETE EDIT FORMS (CREATE AND UPDATE USER)                     */
 
-function autocompleteLabelFor(input) {
-    var inputId = input.id;
-    var labelFor = "label" + inputId.charAt(0).toUpperCase() + inputId.slice(1);
-    var label = document.getElementById(labelFor);
-    if (label) {
-        label.setAttribute("for", inputId);
-    }
+function autoCompleteEditUser() {
+    const nempleadoInput = document.getElementById('NEMPLEADO1');
+    const nombreInput = document.getElementById('NOMBRE1');
+    const passInput = document.getElementById('PASS1');
+    const tiendaInput = document.getElementById('TIENDA1');
+
+    const nempleadoValue = document.getElementById('NEMPLEADO_VALUE').getAttribute('value');
+    const nombreValue = document.getElementById('NOMBRE_VALUE').getAttribute('value');
+    const passValue = document.getElementById('PASS_VALUE').getAttribute('value');
+    const tiendaValue = document.getElementById('TIENDA_VALUE').getAttribute('value');
+
+    nempleadoInput.value = nempleadoValue;
+    nombreInput.value = nombreValue;
+    passInput.value = passValue;
+    tiendaInput.value = tiendaValue;
+
 }
