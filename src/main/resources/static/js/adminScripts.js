@@ -20,7 +20,7 @@ function openMenu(menuId) {
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
-/*                            USER FORMS (CREATE AND UPDATE)                            */
+/*                            USER FORM (CREATE)                            */
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('formAdmin');
@@ -364,9 +364,151 @@ function validateDEPA(inputField) {
     }
 }
 
+/*                     AUTOCOMPLETE EDIT FORMS (UPDATE PRODUCT)                     */
+
+function autoCompleteEditProduct(button) {
+    const sValue = button.value;
+    console.log(sValue);
+
+    const skuInput = document.getElementById('SKU' + sValue);
+    const descripcionInput = document.getElementById('DESCRIPCION' + sValue);
+    const costoInput = document.getElementById('COSTO' + sValue);
+    const precioInput = document.getElementById('PRECIO' + sValue);
+    const departamentoInput = document.getElementById('DEPARTAMENTO' + sValue);
+    const tiendaInput = document.getElementById('TIENDA_PROD' + sValue);
+    const descuentoInput = document.getElementById('DESCUENTO' + sValue);
+    const cantidad_totalInput = document.getElementById('CANTIDAD_TOTAL' + sValue);
+    const cantidad_disponibleInput = document.getElementById('CANTIDAD_DISPONIBLE' + sValue);
+
+    const skuValue = document.getElementById('SKU_VALUE' + sValue).getAttribute('value');
+    const descripcionValue = document.getElementById('DESCRIPCION_VALUE' + sValue).getAttribute('value');
+    const costoValue = document.getElementById('COSTO_VALUE' + sValue).getAttribute('value');
+    const precioValue = document.getElementById('PRECIO_VALUE' + sValue).getAttribute('value');
+    const departamentoValue = document.getElementById('DEPARTAMENTO_VALUE' + sValue).getAttribute('value');
+    const tiendaValue = document.getElementById('TIENDA_PROD_VALUE' + sValue).getAttribute('value');
+    const descuentoValue = document.getElementById('DESCUENTO_VALUE' + sValue).getAttribute('value');
+    const cantidad_totalValue = document.getElementById('CANTIDAD_TOTAL_VALUE' + sValue).getAttribute('value');
+    const cantidad_disponibleValue = document.getElementById('CANTIDAD_DISPONIBLE_VALUE' + sValue).getAttribute('value');
+
+    skuInput.value = skuValue;
+    descripcionInput.value = descripcionValue;
+    costoInput.value = costoValue;
+    precioInput.value = precioValue;
+    departamentoInput.value = departamentoValue;
+    tiendaInput.value = tiendaValue;
+    descuentoInput.value = descuentoValue;
+    cantidad_totalInput.value = cantidad_totalValue;
+    cantidad_disponibleInput.value = cantidad_disponibleValue;
+
+    const prodForm = document.getElementById('productEditForm' + sValue);
+
+    prodForm.addEventListener('submit', e => {
+        if (!validateData()) {
+            e.preventDefault();
+        }
+    });
+
+    const setError = (element, message) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+
+        errorDisplay.innerText = message;
+        inputControl.classList.add('error');
+        inputControl.classList.remove('success');
+    }
+
+    const setSuccess = element => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+
+        errorDisplay.innerText = '';
+        inputControl.classList.add('success');
+        inputControl.classList.remove('error');
+    };
+
+    const validateData = () => {
+        let isValid = true;
+
+        const skuValor = skuInput.value.trim();
+        const descripcionValor = descripcionInput.value.trim();
+        const costoValor = costoInput.value.trim();
+        const precioValor = precioInput.value.trim();
+        const departamentoValor = departamentoInput.value.trim();
+        const tiendaValor = tiendaInput.value.trim();
+        const descuentoValor = descuentoInput.value.trim();
+        const cantidad_totalValor = cantidad_totalInput.value.trim();
+        const cantidad_disponibleValor = cantidad_disponibleInput.value.trim();
+
+        if (!skuValor) {
+            setError(skuInput, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(skuInput);
+        }
+
+        if (!descripcionValor) {
+            setError(descripcionInput, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(descripcionInput);
+        }
+
+        if (!costoValor) {
+            setError(costoInput, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(costoInput);
+        }
+
+        if (!precioValor) {
+            setError(precioInput, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(precioInput);
+        }
+
+        if (!departamentoValor) {
+            setError(departamentoInput, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(departamentoInput);
+        }
+
+        if (!tiendaValor) {
+            setError(tiendaInput, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(tiendaInput);
+        }
+
+        if (!descuentoValor) {
+            setError(descuentoInput, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(descuentoInput);
+        }
+
+        if (!cantidad_totalValor) {
+            setError(cantidad_totalInput, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(cantidad_totalInput);
+        }
+
+        if (!cantidad_disponibleValor) {
+            setError(cantidad_disponibleInput, 'Campo requerido');
+            isValid = false;
+        } else {
+            setSuccess(cantidad_disponibleInput);
+        }
+
+        return isValid;
+    };
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
-/*                     AUTOCOMPLETE EDIT FORMS (CREATE AND UPDATE USER)                     */
+/*                     AUTOCOMPLETE EDIT FORMS (UPDATE USER)                     */
 
 function autoCompleteEditUser(button) {
     const nemValue = button.value;

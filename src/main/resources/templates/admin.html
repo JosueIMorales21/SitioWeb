@@ -448,7 +448,13 @@
                     <td th:text="${product.CANTIDAD_DISPONIBLE}"></td>
                     <td>
                         <!-- EDIT BUTTON -->
-                        <button type="button" class="btn btn-primary" th:attr="data-target='#productModal'+${product.SKU}" data-toggle="modal">EDITAR</button>
+                        <button type="button"
+                                class="btn btn-primary"
+                                th:attr="data-target='#productModal'+${product.SKU}"
+                                data-toggle="modal"
+                                th:value="${product.SKU}"
+                                onclick="autoCompleteEditProduct(this)"
+                        >EDITAR</button>
                     </td>
                 </tr>
                 </tbody>
