@@ -468,111 +468,143 @@
                         </div>
                         <div class="modal-body">
                             <!-- EDIT PRODUCT FORM -->
-                            <form th:action="@{/admin}" method="post">
-                                <div class="form-group">
-                                    <label>SKU:</label>
-                                    <label>
-                                        <input type="text"
-                                               class="form-control"
-                                               name="SKU"
-                                               th:value="${product.SKU}"
-                                        />
-                                    </label>
+                            <form style="align-items: center" th:id="'productEditForm' + ${product.SKU}" th:action="@{/admin}" method="post" th:object="${product}">
+
+                                <!-- CONTAINERS TO STORE THE CURRENT USER'S INFO -->
+                                <div style="display: none;" th:id="'SKU_VALUE' + ${product.SKU}" th:value="${product.SKU}"></div>
+                                <div style="display: none;" th:id="'DESCRIPCION_VALUE' + ${product.SKU}" th:value="${product.DESCRIPCION}"></div>
+                                <div style="display: none;" th:id="'COSTO_VALUE' + ${product.SKU}" th:value="${product.COSTO}"></div>
+                                <div style="display: none;" th:id="'PRECIO_VALUE' + ${product.SKU}" th:value="${product.PRECIO}"></div>
+                                <div style="display: none;" th:id="'DEPARTAMENTO_VALUE' + ${product.SKU}" th:value="${product.DEPARTAMENTO}"></div>
+                                <div style="display: none;" th:id="'TIENDA_PROD_VALUE' + ${product.SKU}" th:value="${product.TIENDA}"></div>
+                                <div style="display: none;" th:id="'DESCUENTO_VALUE' + ${product.SKU}" th:value="${product.DESCUENTO}"></div>
+                                <div style="display: none;" th:id="'CANTIDAD_TOTAL_VALUE' + ${product.SKU}" th:value="${product.CANTIDAD_TOTAL}"></div>
+                                <div style="display: none;" th:id="'CANTIDAD_DISPONIBLE_VALUE' + ${product.SKU}" th:value="${product.CANTIDAD_DISPONIBLE}"></div>
+
+                                <div class="userRegisterGroup">
+                                    <!-- "readonly" ADDED SO THE USER CAN'T MODIFY THAT FIELD -->
+                                    <label th:for="'SKU' + ${product.SKU}" class="control-label">SKU:</label>
+                                    <input type="text"
+                                           th:id="'SKU' + ${product.SKU}"
+                                           th:name="'SKU' + ${product.SKU}"
+                                           class="form-control"
+                                           placeholder="Introduce un SKU"
+                                           oninput="validateSKU(this)"
+                                           th:field="*{SKU}"
+                                           readonly
+                                    />
+                                    <div class="error"></div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>DESCRIPCIÓN:</label>
-                                    <label>
-                                        <input type="text"
-                                               class="form-control"
-                                               name="DESCRIPCION"
-                                               th:value="${product.DESCRIPCION}"
-                                        />
-                                    </label>
+                                <div class="userRegisterGroup">
+                                    <label th:for="'DESCRIPCION' + ${product.SKU}" class="control-label">Descripción:</label>
+                                    <input type="text"
+                                           th:id="'DESCRIPCION' + ${product.SKU}"
+                                           th:name="'DESCRIPCION' + ${product.SKU}"
+                                           class="form-control"
+                                           placeholder="Introduce una descripcion"
+                                           oninput="validateDESCRIPCION(this)"
+                                           th:field="*{DESCRIPCION}"
+                                    />
+                                    <div class="error"></div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>COSTO:</label>
-                                    <label>
-                                        <input type="text"
-                                               class="form-control"
-                                               name="COSTO"
-                                               th:value="${product.COSTO}"
-                                        />
-                                    </label>
+                                <div class="userRegisterGroup">
+                                    <label th:for="'COSTO' + ${product.SKU}" class="control-label">Costo:</label>
+                                    <input type="text"
+                                           th:id="'COSTO' + ${product.SKU}"
+                                           th:name="'COSTO' + ${product.SKU}"
+                                           class="form-control"
+                                           placeholder="Introduce un costo"
+                                           oninput="validateNEMPLEADO(this)"
+                                           th:field="*{COSTO}"
+                                    />
+                                    <div class="error"></div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>PRECIO:</label>
-                                    <label>
-                                        <input type="text"
-                                               class="form-control"
-                                               name="PRECIO"
-                                               th:value="${product.PRECIO}"
-                                        />
-                                    </label>
+                                <div class="userRegisterGroup">
+                                    <label th:for="'PRECIO' + ${product.SKU}" class="control-label">Precio:</label>
+                                    <input type="text"
+                                           th:id="'PRECIO' + ${product.SKU}"
+                                           th:name="'PRECIO' + ${product.SKU}"
+                                           class="form-control"
+                                           placeholder="Introduce un precio"
+                                           oninput="validateNEMPLEADO(this)"
+                                           th:field="*{PRECIO}"
+                                    />
+                                    <div class="error"></div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>DEPARTAMENTO:</label>
-                                    <label>
-                                        <input type="text"
-                                               class="form-control"
-                                               name="DEPARTAMENTO"
-                                               th:value="${product.DEPARTAMENTO}"
-                                        />
-                                    </label>
+                                <div class="userRegisterGroup">
+                                    <label th:for="'DEPARTAMENTO' + ${product.SKU}" class="control-label">Departamento:</label>
+                                    <input type="text"
+                                           th:id="'DEPARTAMENTO' + ${product.SKU}"
+                                           th:name="'DEPARTAMENTO' + ${product.SKU}"
+                                           class="form-control"
+                                           placeholder="Introduce un departamento"
+                                           oninput="validateDEPA(this)"
+                                           th:field="*{DEPARTAMENTO}"
+                                    />
+                                    <div class="error"></div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>TIENDA:</label>
-                                    <label>
-                                        <input type="text"
-                                               class="form-control"
-                                               name="TIENDA"
-                                               th:value="${product.TIENDA}"
-                                        />
-                                    </label>
+                                <div class="userRegisterGroup">
+                                    <label th:for="'TIENDA_PROD' + ${product.SKU}" class="control-label">Tienda:</label>
+                                    <input type="text"
+                                           th:id="'TIENDA_PROD' + ${product.SKU}"
+                                           th:name="'TIENDA_PROD' + ${product.SKU}"
+                                           class="form-control"
+                                           placeholder="Introduce una tienda"
+                                           oninput="validateTIENDA(this)"
+                                           th:field="*{TIENDA}"
+                                    />
+                                    <div class="error"></div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>DESCUENTO:</label>
-                                    <label>
-                                        <input type="text"
-                                               class="form-control"
-                                               name="DESCUENTO"
-                                               th:value="${product.DESCUENTO}"
-                                        />
-                                    </label>
+                                <div class="userRegisterGroup">
+                                    <label th:for="'DESCUENTO' + ${product.SKU}" class="control-label">Descuento:</label>
+                                    <input type="text"
+                                           th:id="'DESCUENTO' + ${product.SKU}"
+                                           th:name="'DESCUENTO' + ${product.SKU}"
+                                           class="form-control"
+                                           placeholder="Introduce un descuento"
+                                           oninput="validateNEMPLEADO(this)"
+                                           th:field="*{DESCUENTO}"
+                                    />
+                                    <div class="error"></div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>CANTIDAD TOTAL:</label>
-                                    <label>
-                                        <input type="text"
-                                               class="form-control"
-                                               name="CANTIDAD_TOTAL"
-                                               th:value="${product.CANTIDAD_TOTAL}"
-                                        />
-                                    </label>
+                                <div class="userRegisterGroup">
+                                    <label th:for="'CANTIDAD_TOTAL' + ${product.SKU}" class="control-label">Cantidad total:</label>
+                                    <input type="text"
+                                           th:id="'CANTIDAD_TOTAL' + ${product.SKU}"
+                                           th:name="'CANTIDAD_TOTAL' + ${product.SKU}"
+                                           class="form-control"
+                                           placeholder="Introduce una cantidad total"
+                                           oninput="validateNEMPLEADO(this)"
+                                           th:field="*{CANTIDAD_TOTAL}"
+                                    />
+                                    <div class="error"></div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>CANTIDAD DISPONIBLE:</label>
-                                    <label>
-                                        <input type="text"
-                                               class="form-control"
-                                               name="CANTIDAD_DISPONIBLE"
-                                               th:value="${product.CANTIDAD_DISPONIBLE}"
-                                        />
-                                    </label>
+                                <div class="userRegisterGroup">
+                                    <label th:for="'CANTIDAD_DISPONIBLE' + ${product.SKU}" class="control-label">Cantidad disponible:</label>
+                                    <input type="text"
+                                           th:id="'CANTIDAD_DISPONIBLE' + ${product.SKU}"
+                                           th:name="'CANTIDAD_DISPONIBLE' + ${product.SKU}"
+                                           class="form-control"
+                                           placeholder="Introduce una cantidad disponible"
+                                           oninput="validateNEMPLEADO(this)"
+                                           th:field="*{CANTIDAD_DISPONIBLE}"
+                                    />
+                                    <div class="error"></div>
                                 </div>
 
-                                <div class="modal-footer">
-                                    <!-- ACEPTAR BUTTON WITH "updateProduct" AS ACTION VALUE NEEDED SO IT WORKS AS EXPECTED -->
-                                    <button type="submit" name="action" value="updateProduct" class="btn btn-primary">ACEPTAR
-                                    </button>
-                                    <!-- CLOSE FORM BUTTON, WORKS THE SAME AS THE PREVIOUS ONE -->
+                                <br>
+                                <div style="align-items: center">
+                                    <!-- ACEPTAR BUTTON WITH "UPDATE" AS ACTION VALUE NEEDED SO IT WORKS AS EXPECTED -->
+                                    <button type="submit" class="btn btn-primary" name="action" value="updateProduct">ACEPTAR</button>
+                                    <!-- CLOSE FORM BUTTON WORKS THE SAME AS THE PREVIOUS ONE -->
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
                                 </div>
                             </form>
