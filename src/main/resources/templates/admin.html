@@ -113,7 +113,7 @@
                     <div class="error"></div>
                 </div>
                 <br>
-                <!-- THIS BUTTON HAS "REGISTER" AS ACTION VALUE SO IT CAN WORK AS EXPECTED -->
+                <!-- Registrar BUTTON WITH "REGISTER" AS ACTION VALUE SO IT CAN WORK AS EXPECTED -->
                 <div style="align-items: center">
                     <button type="submit" class="btn btn-primary" name="action" value="register">Registrar</button>
                 </div>
@@ -393,7 +393,7 @@
                 </div>
                 <br>
 
-                <!-- REGISTRAR BUTTON WITH "UPDATE" AS ACTION VALUE NEEDED SO IT WORKS AS EXPECTED -->
+                <!-- REGISTRAR BUTTON WITH "registerProd" AS ACTION VALUE NEEDED SO IT WORKS AS EXPECTED -->
                 <div style="align-items: center">
                     <button type="submit" class="btn btn-primary" name="action" value="registerProd">Registrar</button>
                 </div>
@@ -476,7 +476,7 @@
                             <!-- EDIT PRODUCT FORM -->
                             <form style="align-items: center" th:id="'productEditForm' + ${product.SKU}" th:action="@{/admin}" method="post" th:object="${product}">
 
-                                <!-- CONTAINERS TO STORE THE CURRENT USER'S INFO -->
+                                <!-- CONTAINERS TO STORE THE CURRENT PRODUCT'S INFO -->
                                 <div style="display: none;" th:id="'SKU_VALUE' + ${product.SKU}" th:value="${product.SKU}"></div>
                                 <div style="display: none;" th:id="'DESCRIPCION_VALUE' + ${product.SKU}" th:value="${product.DESCRIPCION}"></div>
                                 <div style="display: none;" th:id="'COSTO_VALUE' + ${product.SKU}" th:value="${product.COSTO}"></div>
@@ -608,7 +608,7 @@
 
                                 <br>
                                 <div style="align-items: center">
-                                    <!-- ACEPTAR BUTTON WITH "UPDATE" AS ACTION VALUE NEEDED SO IT WORKS AS EXPECTED -->
+                                    <!-- ACEPTAR BUTTON WITH "updateProduct" AS ACTION VALUE NEEDED SO IT WORKS AS EXPECTED -->
                                     <button type="submit" class="btn btn-primary" name="action" value="updateProduct">ACEPTAR</button>
                                     <!-- CLOSE FORM BUTTON WORKS THE SAME AS THE PREVIOUS ONE -->
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
