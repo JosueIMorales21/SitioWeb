@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class EmbeddedTomcatApplication {
 
     public static void main(String[] args) {
+        System.out.println("HOLA MUNDO!");
         SpringApplication.run(EmbeddedTomcatApplication.class, args);
     }
 }
